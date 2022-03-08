@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
-#include "libft/libft.h"
+#include "../libft/libft.h"
 
 typedef struct	s_token
 {

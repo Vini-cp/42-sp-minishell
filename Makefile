@@ -2,22 +2,34 @@
 
 LIBFT	:= libft
 NAME	:= minishell
-CFLAGS	:= -Wall -Wextra -Werror -o
+CFLAGS	:= -Wall -Wextra -Werror
+LFLAGS	:= -Llibft -lft -lreadline
 CC	:= gcc
-SRCS	:=	shell.c \
-			lexer.c \
+SRC		:=	shell.c \
+			lexer/lexer.c \
 				teste.c
+
+SRC_FOLDER 	:= src
+OBJ_FOLDER	:= obj
+SRCS 		:= $(addprefix ${SRC_FOLDER}/, ${SRC})
+OBJS 		:= $(addprefix ${OBJ_FOLDER}/, ${SRCS:.c=.o})
 
 all	: $(NAME)
 
-$(NAME)	: $(SRCS)
+$(NAME)	: $(OBJS)
 	make  -C $(LIBFT)
-	$(CC) $(CFLAGS) $(NAME) $(SRCS) -Llibft -lft -lreadline
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LFLAGS)
 
-clean	:
-		make clean -C $(LIBFT)
-fclean	:
-	rm -f $(NAME)
+$(OBJ_FOLDER)/%.o: %.c
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+clean:
+	make clean -C $(LIBFT)
+	rm -rf $(OBJ_FOLDER)
+
+fclean: clean
 	make fclean -C $(LIBFT)
+	rm -f $(NAME)
 
 re	: fclean all

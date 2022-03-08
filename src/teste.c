@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "../include/shell.h"
 
 void ft_printtokens(t_shell *mshell)
 {
