@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/08 01:54:58 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/09 14:45:40 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/shell.h"
+#include "../include/lexer.h"
 
 /*
 inicializa dados do mshell, tkcounter é o contador utilizado para criação de tokens,
@@ -74,6 +75,7 @@ int	main(int argc, char **argv, char **env)
 		else
 		{
 			free(mshell->input);
+			rl_clear_history();
 			free(mshell);
 			exit(0);
 		}

@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   teste.c                                            :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/09 14:43:56 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/09 14:43:57 by chideyuk         ###   ########.fr       */
+/*   Created: 2022/03/09 15:07:22 by chideyuk          #+#    #+#             */
+/*   Updated: 2022/03/09 15:09:56 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/shell.h"
+#ifndef LEXER_H
+# define LEXER_H
 
-void ft_printtokens(t_shell *mshell)
-{
-	t_token	*temp;
+# include "shell.h"
 
-	temp = mshell->firsttoken;
+# define SINGLE_QUOTES '\''
+# define DOUBLE_QUOTES '\"'
 
-	while (temp)
-	{
-		printf("TOKEN:%s\n", temp->token);
-		temp = temp->next;
-	}
-	return ;
-}
+void	ft_lexer(t_shell *mshell);
+t_token	*ft_createtk(void);
+void	ft_freetokens(t_shell *mshell);
+
+#endif
