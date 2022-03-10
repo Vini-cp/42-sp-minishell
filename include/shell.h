@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/09 15:09:18 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:28:35 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_token
 typedef struct s_shell
 {
 	char			*input;
+	char			**path;
 	struct s_token	*firsttoken;
 	int				tkcounter;
 	int				open;
