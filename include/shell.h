@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/10 18:28:35 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:43:04 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ typedef struct s_shell
 
 void	ft_printtokens(t_shell *mshell);
 void	ft_freetokens(t_shell *mshell);
+int		ft_iscommand(t_shell *mshell, char *str);
+char	**ft_pathfinder(char **env);
 
 #endif
