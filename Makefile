@@ -7,6 +7,7 @@ LFLAGS	:= -Llibft -lft -lreadline
 CC		:= gcc
 SRC		:=	shell.c \
 			lexer/lexer.c \
+			lexer/token.c \
 			parser/parser.c \
 				teste.c
 

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/08 01:54:58 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/10 18:35:47 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/shell.h"
+#include "../include/lexer.h"
 
 /*
 inicializa dados do mshell, tkcounter é o contador utilizado para criação de tokens,
@@ -19,8 +20,8 @@ firstoken é um ponteiro para o primeiro token;
 */
 void	ft_start(t_shell *mshell, char **env)
 {
-	(void)env;//
 	
+	mshell->path = ft_pathfinder(env);
 	mshell->tkcounter = 0;
 	mshell->open  = 0;
 	mshell->start = 0;
@@ -57,7 +58,6 @@ int	main(int argc, char **argv, char **env)
 	t_shell	*mshell;
 	(void)argc;
 	(void)argv;
-	(void)env;//
 
 	mshell = malloc(sizeof(*mshell));
 	ft_start(mshell, env);
@@ -74,6 +74,8 @@ int	main(int argc, char **argv, char **env)
 		else
 		{
 			free(mshell->input);
+			ft_freeptr(mshell->path);
+			rl_clear_history();
 			free(mshell);
 			exit(0);
 		}

@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   teste.c                                            :+:      :+:    :+:   */
+/*   iscommand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/09 14:43:56 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/10 18:39:15 by chideyuk         ###   ########.fr       */
+/*   Created: 2022/03/10 18:09:47 by chideyuk          #+#    #+#             */
+/*   Updated: 2022/03/10 18:31:51 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/shell.h"
+#include "shell.h"
 
-void ft_printtokens(t_shell *mshell)
+static int	ft_check(char *path, char *arg)
 {
-	t_token	*temp;
+	char	*newpath;
+	int		fd;
 
-	temp = mshell->firsttoken;
-
-	while (temp)
-	{
-		printf("TOKEN:%s\n", temp->token);
-		temp = temp->next;
-	}
-	return ;
+	newpath = ft_strjoin(path, arg);
+	fd = open(newpath, O_RDONLY);
+	close(fd);
+	free(newpath);
+	return (fd);
 }
 
-void	ft_freeptr(char	**ptr)
+int	ft_iscommand(t_shell *mshell, char *str)
 {
-	int 	counter;
-	
+	char	**paths;
+	int		counter;
+	int		found;
+
+	paths = mshell->path;
 	counter = 0;
-	while (ptr[counter])
+	while (paths[counter] && !found)
 	{
-		free(ptr[counter]);
+		found = ft_check(paths[counter], str);
 		counter++;
 	}
-	free(ptr);
+	return (found);
 }
