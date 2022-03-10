@@ -4,9 +4,10 @@ LIBFT	:= libft
 NAME	:= minishell
 CFLAGS	:= -Wall -Wextra -Werror
 LFLAGS	:= -Llibft -lft -lreadline
-CC	:= gcc
+CC		:= gcc
 SRC		:=	shell.c \
 			lexer/lexer.c \
+			parser/parser.c \
 				teste.c
 
 SRC_FOLDER 	:= src
