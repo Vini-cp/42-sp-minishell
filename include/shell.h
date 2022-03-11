@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/11 15:53:39 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/11 19:49:20 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,17 @@ typedef struct	s_shell
 	struct s_cmd_table	*cmdtable;
 }					t_shell;
 
-void	ft_lexer(t_shell *mshell);
-void	ft_parser(t_shell *mshell);
-void	ft_freeptr(char	**ptr);
-int		ft_iscommand(t_shell *mshell, char *str);
-char	**ft_pathfinder(char **env);
-char	*ft_concatenate(char *left, char const *right);
-int		ft_special_char(char *str);
+void		ft_lexer(t_shell *mshell);
+void		ft_parser(t_shell *mshell);
+void		ft_freeptr(char **ptr);
+int			ft_iscommand(t_shell *mshell, char *str);
+char		**ft_pathfinder(char **env);
+char		*ft_concatenate(char *left, char const *right);
+int			ft_special_char(char *str);
+void		ft_printtokens(t_shell *mshell);
+void		ft_printtables(t_shell *mshell);
+void		ft_freetokens(t_shell *mshell);
+void		ft_free_cmd_table(t_shell *mshell);
 t_cmd_table	*ft_create_cmd_table(void);
-
-void 	ft_printtokens(t_shell *mshell);
-void	ft_printtables(t_shell *mshell);
-void 	ft_freetokens(t_shell *mshell);
 
 #endif

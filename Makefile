@@ -11,6 +11,7 @@ SRC		:=	shell.c \
 			lexer/token.c \
 			parser/ft_parser.c \
 			parser/ft_create_cmd_table.c \
+			parser/ft_free_cmd_table.c \
 			utils/ft_concatenate.c \
 			utils/ft_iscommand.c \
 			utils/ft_pathfinder.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:34:27 by coder             #+#    #+#             */
-/*   Updated: 2022/03/11 15:46:50 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/11 19:46:32 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,17 @@ static void analyze_token(char* token, t_cmd_table **cmd, t_shell *mshell)
 
 	special_char = ft_special_char(token);
 	if (mshell->start == 1 && ft_iscommand(mshell, token))
-		(*cmd)->cmd = token;
+		(*cmd)->cmd = ft_strdup(token);
 	else if (special_char >= 0)
 		handle_special_char(special_char, cmd, mshell);
 	else if (mshell->cmd_input == 1)
 	{
-		(*cmd)->input_arg = token;
+		(*cmd)->input_arg = ft_strdup(token);
 		mshell->cmd_input = 0;
 	}
 	else if (mshell->cmd_output == 1)
 	{
-		(*cmd)->output_arg = token;
+		(*cmd)->output_arg = ft_strdup(token);
 		mshell->cmd_output = 0;
 	}
 	else
