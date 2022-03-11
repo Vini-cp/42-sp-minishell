@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/10 21:26:08 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/11 15:53:39 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,15 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include "../libft/libft.h"
-#include "parser.h"
+
+typedef enum e_in_out_type
+{
+	NO_CHAR,
+	ONE_CHAR,
+	TWO_CHARS
+} t_in_out_type;
 
 typedef struct s_token
 {
@@ -43,21 +50,27 @@ typedef struct	s_cmd_table
 typedef struct	s_shell
 {
 	char				*input;
-	char				**PATH;
+	char				**path;
 	int					tkcounter;
 	int					open;
 	int					start;
-	int					input;
-	int					output;
+	int					cmd_input;
+	int					cmd_output;
 	struct s_token		*firsttoken;
 	struct s_cmd_table	*cmdtable;
 }					t_shell;
 
 void	ft_lexer(t_shell *mshell);
 void	ft_parser(t_shell *mshell);
-void 	ft_printtokens(t_shell *mshell);
-void 	ft_freetokens(t_shell *mshell);
+void	ft_freeptr(char	**ptr);
 int		ft_iscommand(t_shell *mshell, char *str);
 char	**ft_pathfinder(char **env);
+char	*ft_concatenate(char *left, char const *right);
+int		ft_special_char(char *str);
+t_cmd_table	*ft_create_cmd_table(void);
+
+void 	ft_printtokens(t_shell *mshell);
+void	ft_printtables(t_shell *mshell);
+void 	ft_freetokens(t_shell *mshell);
 
 #endif

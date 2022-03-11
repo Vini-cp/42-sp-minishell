@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pathfinder.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 18:18:15 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/10 18:05:30 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:27:31 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "../../include/shell.h"
 
 char	**ft_pathfinder(char **env)
 {
@@ -24,7 +24,6 @@ char	**ft_pathfinder(char **env)
 	if (!env[counter])
 		return (NULL);
 	temp = ft_strdup(ft_strchr(env[counter], '=') + 1);
-	printf("%s\n", temp);
 	split = ft_split(temp, ':');
 	counter = 0;
 	free(temp);

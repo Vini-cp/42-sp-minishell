@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   iscommand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 18:09:47 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/10 18:31:51 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/10 21:56:48 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "../../include/shell.h"
 
 static int	ft_check(char *path, char *arg)
 {

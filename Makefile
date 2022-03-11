@@ -6,10 +6,15 @@ CFLAGS	:= -Wall -Wextra -Werror
 LFLAGS	:= -Llibft -lft -lreadline
 CC		:= gcc
 SRC		:=	shell.c \
+			teste.c \
 			lexer/lexer.c \
 			lexer/token.c \
-			parser/parser.c \
-				teste.c
+			parser/ft_parser.c \
+			parser/ft_create_cmd_table.c \
+			utils/ft_concatenate.c \
+			utils/ft_iscommand.c \
+			utils/ft_pathfinder.c \
+			utils/ft_special_char.c
 
 SRC_FOLDER 	:= src
 OBJ_FOLDER	:= obj
@@ -35,3 +40,6 @@ fclean: clean
 	rm -f $(NAME)
 
 re	: fclean all
+
+do	: $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LFLAGS)

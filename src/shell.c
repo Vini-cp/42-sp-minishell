@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/10 18:35:47 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/11 03:51:06 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ int	main(int argc, char **argv, char **env)
 		if (mshell->input)
 		{
 			ft_lexer(mshell);
-			ft_printtokens(mshell);//
+			// ft_printtokens(mshell);//
+			ft_parser(mshell);
+			ft_printtables(mshell);
 			ft_freetokens(mshell);
 			free(mshell->input);
 		}
