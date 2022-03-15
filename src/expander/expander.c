@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:33:24 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/15 17:30:48 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:59:09 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_expander(t_shell *mshell, char **env)
 	t_token	*temp;
 
 	temp = mshell->firsttoken;
-	while (temp->token)
+	while (temp && temp->token)
 	{
 		temp->token = ft_expand(temp->token, env, mshell->firstvar);
 		temp->token = ft_trimquotes(temp->token);
