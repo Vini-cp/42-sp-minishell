@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/11 19:49:20 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:34:43 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ typedef struct s_token
 	int				test;
 }					t_token;
 
+typedef struct s_var
+{
+	char			*key;
+	char			*content;
+	struct s_var	*next;
+}					t_var;
+
 typedef struct	s_cmd_table
 {
 	char				*cmd;
@@ -57,6 +64,7 @@ typedef struct	s_shell
 	int					cmd_input;
 	int					cmd_output;
 	struct s_token		*firsttoken;
+	struct s_var		*firstvar;
 	struct s_cmd_table	*cmdtable;
 }					t_shell;
 

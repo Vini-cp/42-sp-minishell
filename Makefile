@@ -9,6 +9,9 @@ SRC		:=	shell.c \
 			teste.c \
 			lexer/lexer.c \
 			lexer/token.c \
+			expander/expander.c \
+			expander/expander_utils.c \
+			expander/trimquotes.c \
 			parser/ft_parser.c \
 			parser/ft_create_cmd_table.c \
 			parser/ft_free_cmd_table.c \
