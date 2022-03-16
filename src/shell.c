@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/11 19:51:46 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:32:41 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/shell.h"
 #include "../include/lexer.h"
+#include "../include/expander.h"
 
 /*
 inicializa dados do mshell, tkcounter é o contador utilizado para criação de tokens,
@@ -25,6 +26,7 @@ void	ft_start(t_shell *mshell, char **env)
 	mshell->tkcounter = 0;
 	mshell->open  = 0;
 	mshell->start = 0;
+	mshell->firstvar = NULL;
 	mshell->firsttoken = NULL;
 }
 
@@ -68,6 +70,7 @@ int	main(int argc, char **argv, char **env)
 		{
 			ft_lexer(mshell);
 			// ft_printtokens(mshell);//
+			ft_expander(mshell, env);
 			ft_parser(mshell);
 			ft_printtables(mshell);
 			ft_freetokens(mshell);

@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:34:55 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/11 21:40:11 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/14 21:27:55 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,54 @@ char	*ft_getvar(char *key, char **env, t_var *variable)
 	return (NULL);
 }
 
-char	*ft_switch(char *s3, char *key, char *s2)
+char	*ft_switch(char *token, char *key, char *content, int counter)
 {
 	char	*temp;
 	char	*result;
-	int		counter;
 
 	result = NULL;
-	counter = 0;
-	while (s3[counter] && (ft_strncmp(&s3[counter], key, ft_strlen(key))))
-		counter++;
 	if (counter)
-		result = ft_substr(s3, 0, counter);
+		result = ft_substr(token, 0, counter);
 	counter = counter + ft_strlen(key);
 	free(key);
 	key = result;
 	if (key)
-		result = ft_strjoinfree1(key, s2);
+		result = ft_strjoin(key, content);
 	else
-		result = ft_strdup(s2);
-	if (s3[counter])
+		result = ft_strdup(content);
+	free(key);
+	if (token[counter])
 	{
-		temp = ft_substr(s3, counter, ft_strlen(s3) - counter);
+		temp = ft_substr(token, counter, ft_strlen(token) - counter);
 		key = result;
-		result = ft_strjoinfree1(key, temp);
+		result = ft_strjoinfreeboth(key, temp);
 	}
+	free(token);
 	return (result);
+}
+
+char	*ft_remove(char *token, char *key, int counter)
+{
+	char	*start;
+	char	*end;
+	char	*result;
+
+	if (!counter)
+		result = ft_substr(token, ft_strlen(key), ft_strlen(token));
+	else
+	{
+		start = ft_substr(token, 0, counter);
+		counter = counter + ft_strlen(key);
+		end = ft_substr(token, counter, ft_strlen(token) - counter);
+		result = ft_strjoinfreeboth(start, end);
+	}
+	free (token);
+	return (result);
+}
+
+int	ft_treatdquote(char *token, int counter, int dquotes)
+{
+	if (!dquotes && strchr(&token[counter + 1], '\"'))
+		return (1);
+	return (0);
 }
