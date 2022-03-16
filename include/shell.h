@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/11 19:49:20 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/16 17:26:14 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "../libft/libft.h"
+
+#define PATH_MAX 4096
 
 typedef enum e_in_out_type
 {
@@ -72,5 +74,8 @@ void		ft_printtables(t_shell *mshell);
 void		ft_freetokens(t_shell *mshell);
 void		ft_free_cmd_table(t_shell *mshell);
 t_cmd_table	*ft_create_cmd_table(void);
+
+void		ft_pwd(void);
+void		ft_cd(char* new_path);
 
 #endif
