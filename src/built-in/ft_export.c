@@ -1,39 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.c                                            :+:      :+:    :+:   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/09 14:41:04 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 17:52:54 by chideyuk         ###   ########.fr       */
+/*   Created: 2022/03/16 20:40:51 by chideyuk          #+#    #+#             */
+/*   Updated: 2022/03/17 16:37:32 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/lexer.h"
-
-t_token	*ft_createtk(void)
+void	ft_export(t_shell *mshell, char	**args)
 {
-	t_token	*new;
+	int	counter;
 
-	new = malloc(sizeof(*new));
-	new->token = NULL;
-	new->next = NULL;
-	return (new);
-}
-
-void	ft_freetokens(t_shell *mshell)
-{
-	t_token	*temp;
-	t_token	*temp2;
-
-	temp = mshell->firsttoken;
-	while (temp)
+	counter = 1;
+	while (args[counter])
 	{
-		free(temp->token);
-		temp2 = temp;
-		temp = temp->next;
-		free(temp2);
-		mshell->firsttoken = NULL;
+		
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:34:55 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/14 21:27:55 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/17 16:34:07 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,16 @@ char	*ft_getvarkey(char	*str, int counter)
 	return (key);
 }
 
-char	*ft_getvar(char *key, char **env, t_var *variable)
+char	*ft_getvar(char *key, t_var *variable)
 {
-	char	*temp;	
-	int		counter;
 	t_var	*tempvar;
 
-	counter = 0;
-	temp = ft_strjoin(key, "=");
-	while ((env[counter]) && (ft_strncmp(env[counter], temp, ft_strlen(temp))))
-		counter++;
-	free(temp);
-	if (env[counter])
-		return (ft_strdup(ft_strchr(env[counter], '=') + 1));
-	else
+	tempvar = variable;
+	while (tempvar)
 	{
-		tempvar = variable;
-		while (tempvar)
-		{
-			if (!ft_strcmp(tempvar->key, key))
-				return (ft_strdup(tempvar->content));
-			tempvar = tempvar->next;
-		}
+		if (!ft_strcmp(tempvar->key, key))
+			return (ft_strdup(tempvar->content));
+		tempvar = tempvar->next;
 	}
 	return (NULL);
 }

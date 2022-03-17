@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:34:10 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/09 15:56:29 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/17 17:50:41 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static t_token	*ft_closetk(t_token *token, t_shell *mshell)
 	temp = token;
 	mshell->open = 0;
 	temp->token = tk;
-	if (mshell->input[mshell->tkcounter + 1])
+	if (mshell->input[mshell->tkcounter]
+		&& mshell->input[mshell->tkcounter + 1])
 		temp->next = ft_createtk();
 	temp = temp->next;
 	return (temp);
@@ -71,6 +72,13 @@ void	ft_lexer(t_shell *mshell)
 {
 	t_token	*temp;
 
+	while (mshell->input[mshell->tkcounter] == ' ')
+		mshell->tkcounter++;
+	if (!mshell->input[mshell->tkcounter])
+	{
+		mshell->tkcounter = 0;
+		return ;
+	}
 	temp = NULL;
 	temp = ft_createtk();
 	mshell->firsttoken = temp;

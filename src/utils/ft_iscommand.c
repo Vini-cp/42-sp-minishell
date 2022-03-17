@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iscommand.c                                        :+:      :+:    :+:   */
+/*   ft_iscommand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 18:09:47 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/10 21:56:48 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/17 14:50:08 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	ft_iscommand(t_shell *mshell, char *str)
 
 	paths = mshell->path;
 	counter = 0;
+	found = 0;
 	while (paths[counter] && !found)
 	{
 		found = ft_check(paths[counter], str);

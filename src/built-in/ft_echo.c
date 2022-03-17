@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pathfinder.c                                    :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 18:18:15 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 16:20:37 by chideyuk         ###   ########.fr       */
+/*   Created: 2022/03/16 19:16:58 by chideyuk          #+#    #+#             */
+/*   Updated: 2022/03/17 15:43:59 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-char	**ft_pathfinder(t_shell *mshell)
+void	ft_echo(char	**args)
 {
+	char	**temp;
 	int		counter;
-	t_var	*temp;
-	char	**split;
 
-	temp = mshell->firstvar;
-	while (temp && ft_strcmp(temp->key, "PATH"))
-		temp = temp->next;
-	if (!temp || temp->content == NULL)
-		return (NULL);
-	split = ft_split(temp->content, ':');
-	counter = 0;
-	while (split[counter])
+	counter = 1;
+	temp = args;
+	if (ft_strcmp(temp[1], "-n"))
+		counter++;
+	while (temp[counter])
 	{
-		split[counter] = ft_strjoinfree1(split[counter], "/");
+		ft_putstr_fd(temp[counter], 1);
+		ft_putstr_fd(" ", 1);
 		counter++;
 	}
-	return (split);
+	if (!ft_strcmp(temp[1], "-n"))
+		ft_putstr_fd("\n", 1);
 }
