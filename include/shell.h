@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 16:19:51 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/17 20:44:24 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void		ft_printtables(t_shell *mshell);
 void		ft_freetokens(t_shell *mshell);
 void		ft_free_cmd_table(t_shell *mshell);
 t_cmd_table	*ft_create_cmd_table(void);
-void		ft_startenv(t_shell *mshell, char **env);//
+void		ft_startenv(t_shell *mshell, char **env);
+t_var		*ft_createvar(char *entry, char **split);
 
 void		ft_pwd(void);
 void		ft_cd(char* new_path);

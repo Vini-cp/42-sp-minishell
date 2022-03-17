@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 17:14:50 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/17 20:46:24 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv, char **env)
 	t_shell	*mshell;
 	(void)argc;
 	(void)argv;
-
+	
 	mshell = malloc(sizeof(*mshell));
 	ft_start(mshell, env);
 	while (1)
@@ -69,8 +69,8 @@ int	main(int argc, char **argv, char **env)
 		if (mshell->input)
 		{
 			ft_lexer(mshell);
-			ft_printtokens(mshell);//
 			ft_expander(mshell);
+			ft_printtokens(mshell);//
 			ft_parser(mshell);
 			//ft_printtables(mshell);
 			ft_freetokens(mshell);

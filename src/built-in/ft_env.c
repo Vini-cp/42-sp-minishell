@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/16 19:16:58 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 19:04:16 by chideyuk         ###   ########.fr       */
+/*   Created: 2022/03/17 18:40:26 by chideyuk          #+#    #+#             */
+/*   Updated: 2022/03/17 19:36:29 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-void	ft_echo(char	**args)
+void	ft_env(char **args, t_shell mshell)
 {
-	char	**temp;
-	int		counter;
+	t_var	temp;
 
-	counter = 1;
-	temp = args;
-	if (ft_strcmp(temp[1], "-n"))
-		counter++;
-	while (temp[counter])
+	if (args[1])
 	{
-		ft_putstr_fd(temp[counter], 1);
-		ft_putstr_fd(" ", 1);
-		counter++;
+		printf("env: invalid argument '%s'\n", args[1]);
+		global_exit = 127;
+		return ;
 	}
-	if (!ft_strcmp(temp[1], "-n"))
-		ft_putstr_fd("\n", 1);
+	temp = mshell->firstvar;
+	while (temp)
+	{
+		if (temp->full && ft_strchr(temp->full, '='))
+			printf("%s\n", temp->full);
+		temp = temp->next;
+	}
 	global_exit = 0;
 }
