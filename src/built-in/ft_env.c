@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 18:40:26 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 02:47:45 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:54:02 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-void	ft_env(t_shell *mshell, char **args)
+void	ft_env(char **args, t_shell *mshell)
 {
 	t_var	temp;
 
 	if (args[1])
 	{
 		printf("env: invalid argument '%s'\n", args[1]);
-		global_exit = 127;
+		//global_exit = 127;
 		return ;
 	}
 	temp = mshell->firstvar;
@@ -29,5 +29,5 @@ void	ft_env(t_shell *mshell, char **args)
 			printf("%s\n", temp->full);
 		temp = temp->next;
 	}
-	global_exit = 0;
+	//global_exit = 0;
 }

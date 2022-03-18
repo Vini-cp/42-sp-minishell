@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:33:24 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 15:31:34 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/18 18:59:50 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_expander(t_shell *mshell)
 	while (temp && temp->token)
 	{
 		temp->token = ft_expand(temp->token, mshell->firstvar);
-		temp->token = ft_trimquotes(temp->token);
+		temp->token = ft_trimquotes(temp->token, temp);
 		temp = temp->next;
 	}
 }

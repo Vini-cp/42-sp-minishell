@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:41:04 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 17:52:54 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/18 19:14:43 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_token	*ft_createtk(void)
 	new = malloc(sizeof(*new));
 	new->token = NULL;
 	new->next = NULL;
+	new->quoted = 0;
 	return (new);
 }
 

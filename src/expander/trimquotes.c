@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:10:52 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/15 17:30:43 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/18 19:13:48 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*ft_trim(char *token, int counter)
 		return (NULL);
 }
 
-char	*ft_trimquotes(char *token)
+char	*ft_trimquotes(char *token, t_token *tk)
 {
 	int		counter;
 	char	quote;
@@ -46,6 +46,7 @@ char	*ft_trimquotes(char *token)
 		if ((token[counter] == '\'' || token[counter] == '\"')
 			&& ft_strchr(&token[counter + 1], quote))
 		{
+			tk->quoted = 1;
 			token = ft_trim(token, counter);
 			while (token[counter] != quote)
 				counter++;

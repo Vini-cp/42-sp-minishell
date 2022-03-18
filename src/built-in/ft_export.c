@@ -6,13 +6,13 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:40:51 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 20:37:30 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:50:27 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-void	ft_exportenv(t_shell mshell)
+static void	ft_exportprint(t_shell *mshell)
 {
 	t_var	temp;
 
@@ -25,7 +25,20 @@ void	ft_exportenv(t_shell mshell)
 	}
 }
 
-void	ft_exportvar(t_shell *mshell, char *arg)
+static void	ft_updatevar(t_var *var, char *arg)
+{
+	char	**split;
+	
+	split = ft_split(arg, '=');
+	ft_freevar(var);
+	var->full = ft_strdup(arg);
+	var->key = split[0];
+	if (split[1])
+		var->content = split[1];
+	ft_freeptr(split);
+}
+
+static void	ft_exportvar(t_shell *mshell, char *arg)
 {
 	char	**split;
 	t_var	*temp;
@@ -34,8 +47,10 @@ void	ft_exportvar(t_shell *mshell, char *arg)
 	split = ft_split(arg, '=');
 	while (temp && ft_strcmp(temp->key, split[0]))
 		temp = temp->next;
-	if(!temp)
-		temp = ft_createvar
+	if (!temp)
+		temp = ft_createvar(arg, split);
+	else
+		temp = ft_updatevar(temp, arg);
 }
 
 void	ft_export(t_shell *mshell, char	**args)

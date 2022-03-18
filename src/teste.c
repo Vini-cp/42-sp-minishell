@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   teste.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:43:56 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/11 03:51:53 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/18 19:14:18 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void ft_printtokens(t_shell *mshell)
 	while (temp)
 	{
 		printf("TOKEN:%s\n", temp->token);
+		printf("QUOTES:%i\n", temp->quoted);
 		temp = temp->next;
 	}
 	return ;
