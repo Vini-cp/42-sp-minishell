@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/16 17:27:51 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/18 02:24:04 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct	s_shell
 	int					start;
 	int					cmd_input;
 	int					cmd_output;
+	int					cmd_length;
 	struct s_token		*firsttoken;
 	struct s_var		*firstvar;
 	struct s_cmd_table	*cmdtable;
@@ -72,6 +73,7 @@ typedef struct	s_shell
 
 void		ft_lexer(t_shell *mshell);
 void		ft_parser(t_shell *mshell);
+void		ft_executor(t_shell *mshell);
 void		ft_freeptr(char **ptr);
 int			ft_iscommand(t_shell *mshell, char *str);
 char		**ft_pathfinder(char **env);

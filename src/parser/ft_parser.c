@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:34:27 by coder             #+#    #+#             */
-/*   Updated: 2022/03/11 19:46:32 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/18 02:26:00 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void handle_special_char(int s_char, t_cmd_table **cmd, t_shell *mshell)
 		(*cmd)->next = ft_create_cmd_table();
 		*cmd = (*cmd)->next;
 		mshell->start = 1;
+		mshell->cmd_length++;
 	}
 	else if (s_char == 1 || s_char == 2)
 	{
@@ -64,6 +65,14 @@ static void analyze_token(char* token, t_cmd_table **cmd, t_shell *mshell)
 		mshell->start = 0;
 }
 
+static void	initialize_parser(t_shell *mshell)
+{
+	mshell->start = 1;
+	mshell->cmd_input = 0;
+	mshell->cmd_output = 0;
+	mshell->cmd_length = 1;
+}
+
 void	ft_parser(t_shell *mshell)
 {
 	t_token		*temp_tok;
@@ -71,9 +80,7 @@ void	ft_parser(t_shell *mshell)
 
 	temp_tok = mshell->firsttoken;
 	mshell->cmdtable = cmd;
-	mshell->start = 1;
-	mshell->cmd_input = 0;
-	mshell->cmd_output = 0;
+	initialize_parser(mshell);
 	while(temp_tok != NULL)
 	{
 		analyze_token(temp_tok->token, &cmd, mshell);

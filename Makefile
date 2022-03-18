@@ -15,6 +15,9 @@ SRC		:=	shell.c \
 			parser/ft_parser.c \
 			parser/ft_create_cmd_table.c \
 			parser/ft_free_cmd_table.c \
+			executor/ft_executor.c \
+			built-in/ft_pwd.c \
+			built-in/ft_cd.c \
 			utils/ft_concatenate.c \
 			utils/ft_iscommand.c \
 			utils/ft_pathfinder.c \
