@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:34:10 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 17:50:41 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/18 20:04:43 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,28 @@ static t_token	*ft_closetk(t_token *token, t_shell *mshell)
 	size_t		len;
 	char		*tk;
 	t_token		*temp;
+	int			space;
 
+	space = 1;
 	len = mshell->tkcounter - mshell->start;
 	tk = ft_substr(mshell->input, mshell->start, len);
 	temp = token;
 	mshell->open = 0;
 	temp->token = tk;
-	if (mshell->input[mshell->tkcounter]
+	while (mshell->input[mshell->tkcounter]
+		&& mshell->input[mshell->tkcounter + space])
+	{
+		if (mshell->input[mshell->tkcounter + space] != ' ')
+		{
+			space = 0;
+			break ;
+		}
+		space++;
+	}
+	if (!space && mshell->input[mshell->tkcounter]
 		&& mshell->input[mshell->tkcounter + 1])
 		temp->next = ft_createtk();
-	temp = temp->next;
-	return (temp);
+	return (temp->next);
 }
 
 static void	ft_handlenormal(t_shell *mshell)

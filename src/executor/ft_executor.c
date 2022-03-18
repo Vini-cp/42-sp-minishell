@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/18 17:58:56 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/18 19:34:45 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ static void	ft_exec_cmd(t_shell *mshell, char **env)
 	else if (ft_strcmp(cmdtable->cmd, "unset") == 0)
 		return ;
 	else if (ft_strcmp(cmdtable->cmd, "env") == 0)
-		return ;
-		// ft_env(mshell, args);
+		ft_env(args, mshell);
 	else if (ft_strcmp(cmdtable->cmd, "exit") == 0)
 		ft_exit(mshell);
 	else

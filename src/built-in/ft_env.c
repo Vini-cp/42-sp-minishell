@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 18:40:26 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 17:54:02 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/18 19:33:43 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_env(char **args, t_shell *mshell)
 {
-	t_var	temp;
+	t_var	*temp;
 
 	if (args[1])
 	{

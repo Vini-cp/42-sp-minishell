@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 19:13:58 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/18 19:33:15 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,6 @@ void		ft_cd(char* new_path);
 void		ft_exit(t_shell *mshell);
 void		ft_echo(char **args);
 // void		ft_export(t_shell *mshell, char	**args);
-// void		ft_env(t_shell *mshell, char **args);
+void		ft_env(char **args, t_shell *mshell);
 
 #endif

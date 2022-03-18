@@ -20,6 +20,7 @@ SRC		:=	shell.c \
 			built-in/ft_cd.c \
 			built-in/ft_exit.c \
 			built-in/ft_echo.c \
+			built-in/ft_env.c \
 			utils/ft_concatenate.c \
 			utils/ft_iscommand.c \
 			utils/ft_pathfinder.c \
