@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:24:02 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 17:54:21 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:55:54 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,10 @@ void	ft_freevar(t_var *var)
 {
 	free(var->full);
 	free(var->key);
+	free(var->content);
 	var->full = NULL;
 	var->key = NULL;
-	if (var->content)
-	{
-		temp->next = NULL;
-		var->content = NULL;
-	}
+	var->content = NULL;
 }
 
 void	ft_unsetvar(char *arg, t_shell *mshell)

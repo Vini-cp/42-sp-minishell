@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/18 19:34:45 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/18 20:52:04 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,9 @@ static void	ft_exec_cmd(t_shell *mshell, char **env)
 	else if (ft_strcmp(cmdtable->cmd, "pwd") == 0)
 		ft_pwd();
 	else if (ft_strcmp(cmdtable->cmd, "export") == 0)
-		return ;
-		// ft_export(mshell, args);
+		ft_export(args, mshell);
 	else if (ft_strcmp(cmdtable->cmd, "unset") == 0)
-		return ;
+		ft_unset(args, mshell);
 	else if (ft_strcmp(cmdtable->cmd, "env") == 0)
 		ft_env(args, mshell);
 	else if (ft_strcmp(cmdtable->cmd, "exit") == 0)
