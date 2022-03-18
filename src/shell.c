@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 02:26:49 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/18 02:32:32 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ firstoken é um ponteiro para o primeiro token;
 */
 void	ft_start(t_shell *mshell, char **env)
 {
-	
-	mshell->path = ft_pathfinder(env);
+	mshell->firstvar = NULL;
+	ft_startenv(mshell, env);//
+	mshell->path = ft_pathfinder(mshell);
 	mshell->tkcounter = 0;
 	mshell->open  = 0;
 	mshell->start = 0;
-	mshell->firstvar = NULL;
 	mshell->firsttoken = NULL;
 }
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv, char **env)
 	t_shell	*mshell;
 	(void)argc;
 	(void)argv;
-
+	
 	mshell = malloc(sizeof(*mshell));
 	ft_start(mshell, env);
 	while (1)
@@ -69,8 +69,8 @@ int	main(int argc, char **argv, char **env)
 		if (mshell->input)
 		{
 			ft_lexer(mshell);
-			// ft_printtokens(mshell);//
-			ft_expander(mshell, env);
+			ft_expander(mshell);
+			ft_printtokens(mshell);//
 			ft_parser(mshell);
 			ft_executor(mshell);
 			// ft_printtables(mshell);

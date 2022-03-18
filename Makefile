@@ -21,6 +21,7 @@ SRC		:=	shell.c \
 			utils/ft_concatenate.c \
 			utils/ft_iscommand.c \
 			utils/ft_pathfinder.c \
+			utils/ft_startenv.c \
 			utils/ft_special_char.c
 
 SRC_FOLDER 	:= src

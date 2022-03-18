@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:33:24 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/15 17:59:09 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/17 15:31:34 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static int	ft_treatsquote(char *token, int counter, int dquotes)
 	return (counter);
 }
 
-static char	*ft_treatdollar(char *token, char **env, t_var *firstvar, int count)
+static char	*ft_treatdollar(char *token, t_var *firstvar, int count)
 {
 	char	*key;
 	char	*content;
 
 	key = ft_getvarkey(token, count);
-	content = ft_getvar(key, env, firstvar);
+	content = ft_getvar(key, firstvar);
 	key = ft_strjoinfree2("$", key);
 	if (!content)
 	{
@@ -45,7 +45,7 @@ static char	*ft_treatdollar(char *token, char **env, t_var *firstvar, int count)
 	return (token);
 }
 
-static char	*ft_expand(char *token, char **env, t_var *firstvar)
+static char	*ft_expand(char *token, t_var *firstvar)
 {
 	int		counter;
 	int		dquotes;
@@ -63,8 +63,8 @@ static char	*ft_expand(char *token, char **env, t_var *firstvar)
 			counter = ft_treatsquote(token, counter, dquotes);
 		else if (token[counter] == '$')
 		{
-			token = ft_treatdollar(token, env, firstvar, counter);
-			token = ft_expand(token, env, firstvar);
+			token = ft_treatdollar(token, firstvar, counter);
+			token = ft_expand(token, firstvar);
 			break ;
 		}
 		else
@@ -73,14 +73,14 @@ static char	*ft_expand(char *token, char **env, t_var *firstvar)
 	return (token);
 }
 
-void	ft_expander(t_shell *mshell, char **env)
+void	ft_expander(t_shell *mshell)
 {
 	t_token	*temp;
 
 	temp = mshell->firsttoken;
 	while (temp && temp->token)
 	{
-		temp->token = ft_expand(temp->token, env, mshell->firstvar);
+		temp->token = ft_expand(temp->token, mshell->firstvar);
 		temp->token = ft_trimquotes(temp->token);
 		temp = temp->next;
 	}

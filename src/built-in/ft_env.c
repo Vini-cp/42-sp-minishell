@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pathfinder.c                                    :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 18:18:15 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 16:20:37 by chideyuk         ###   ########.fr       */
+/*   Created: 2022/03/17 18:40:26 by chideyuk          #+#    #+#             */
+/*   Updated: 2022/03/17 19:36:29 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-char	**ft_pathfinder(t_shell *mshell)
+void	ft_env(char **args, t_shell mshell)
 {
-	int		counter;
-	t_var	*temp;
-	char	**split;
+	t_var	temp;
 
-	temp = mshell->firstvar;
-	while (temp && ft_strcmp(temp->key, "PATH"))
-		temp = temp->next;
-	if (!temp || temp->content == NULL)
-		return (NULL);
-	split = ft_split(temp->content, ':');
-	counter = 0;
-	while (split[counter])
+	if (args[1])
 	{
-		split[counter] = ft_strjoinfree1(split[counter], "/");
-		counter++;
+		printf("env: invalid argument '%s'\n", args[1]);
+		global_exit = 127;
+		return ;
 	}
-	return (split);
+	temp = mshell->firstvar;
+	while (temp)
+	{
+		if (temp->full && ft_strchr(temp->full, '='))
+			printf("%s\n", temp->full);
+		temp = temp->next;
+	}
+	global_exit = 0;
 }

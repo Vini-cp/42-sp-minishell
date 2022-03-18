@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:41:04 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/09 15:06:09 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/17 17:52:54 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void	ft_freetokens(t_shell *mshell)
 		temp2 = temp;
 		temp = temp->next;
 		free(temp2);
+		mshell->firsttoken = NULL;
 	}
 }
