@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 02:32:40 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/18 15:14:05 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ typedef struct	s_shell
 
 void		ft_lexer(t_shell *mshell);
 void		ft_parser(t_shell *mshell);
-void		ft_executor(t_shell *mshell);
+void		ft_executor(t_shell *mshell, char **env);
 void		ft_freeptr(char **ptr);
 int			ft_iscommand(t_shell *mshell, char *str);
 char		**ft_pathfinder(t_shell *mshell);
-char		*ft_concatenate(char *left, char const *right);
+char		*ft_concatenate(char *left, char *right, char middle);
 int			ft_special_char(char *str);
 void		ft_printtokens(t_shell *mshell);
 void		ft_printtables(t_shell *mshell);
@@ -90,5 +90,9 @@ t_var		*ft_createvar(char *entry, char **split);
 
 void		ft_pwd(void);
 void		ft_cd(char* new_path);
+void		ft_exit(t_shell *mshell);
+void		ft_echo(char **args);
+// void		ft_export(t_shell *mshell, char	**args);
+// void		ft_env(t_shell *mshell, char **args);
 
 #endif

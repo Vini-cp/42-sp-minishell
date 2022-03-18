@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 02:32:32 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/18 14:49:35 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,16 @@ int	main(int argc, char **argv, char **env)
 		{
 			ft_lexer(mshell);
 			ft_expander(mshell);
-			ft_printtokens(mshell);//
+			// ft_printtokens(mshell);
 			ft_parser(mshell);
-			ft_executor(mshell);
+			ft_executor(mshell, env);
 			// ft_printtables(mshell);
 			ft_freetokens(mshell);
 			ft_free_cmd_table(mshell);
 			free(mshell->input);
 		}
 		else
-		{
-			free(mshell->input);
-			ft_freeptr(mshell->path);
-			rl_clear_history();
-			free(mshell);
-			exit(0);
-		}
+			ft_exit(mshell);
 	}
 	return (0);
 }

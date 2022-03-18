@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_concatenate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 02:27:07 by coder             #+#    #+#             */
-/*   Updated: 2022/03/11 15:58:52 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/18 15:02:02 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-char	*ft_concatenate(char *left, char const *right)
+char	*ft_concatenate(char *left, char *right, char middle)
 {
 	int		str_len;
 	char	*str;
@@ -22,9 +22,8 @@ char	*ft_concatenate(char *left, char const *right)
 		str_len = ft_strlen(left) + ft_strlen(right) + 2;
 		str = malloc(str_len * sizeof(char));
 		ft_strlcpy(str, left, ft_strlen(left) + 1);
-		str[ft_strlen(left)] = ' ';
+		str[ft_strlen(left)] = middle;
 		ft_strlcpy(str + (ft_strlen(left) + 1), right, ft_strlen(right) + 1);
-		free(left);
 	}
 	else
 	{

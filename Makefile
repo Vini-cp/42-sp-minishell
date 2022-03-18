@@ -18,6 +18,8 @@ SRC		:=	shell.c \
 			executor/ft_executor.c \
 			built-in/ft_pwd.c \
 			built-in/ft_cd.c \
+			built-in/ft_exit.c \
+			built-in/ft_echo.c \
 			utils/ft_concatenate.c \
 			utils/ft_iscommand.c \
 			utils/ft_pathfinder.c \

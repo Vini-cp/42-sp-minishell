@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:16:58 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 19:04:16 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/18 02:57:50 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-void	ft_echo(char	**args)
+void	ft_echo(char **args)
 {
 	char	**temp;
 	int		counter;
@@ -29,5 +29,5 @@ void	ft_echo(char	**args)
 	}
 	if (!ft_strcmp(temp[1], "-n"))
 		ft_putstr_fd("\n", 1);
-	global_exit = 0;
+	// global_exit = 0;
 }

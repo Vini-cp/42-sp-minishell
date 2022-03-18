@@ -6,12 +6,11 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:34:27 by coder             #+#    #+#             */
-/*   Updated: 2022/03/18 02:26:00 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/18 15:30:25 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
-#include <stdio.h>
 
 static void handle_special_char(int s_char, t_cmd_table **cmd, t_shell *mshell)
 {
@@ -43,6 +42,7 @@ static void handle_special_char(int s_char, t_cmd_table **cmd, t_shell *mshell)
 static void analyze_token(char* token, t_cmd_table **cmd, t_shell *mshell)
 {
 	int special_char;
+	char *temp;
 
 	special_char = ft_special_char(token);
 	if (mshell->start == 1 && ft_iscommand(mshell, token))
@@ -60,7 +60,13 @@ static void analyze_token(char* token, t_cmd_table **cmd, t_shell *mshell)
 		mshell->cmd_output = 0;
 	}
 	else
-		(*cmd)->args = ft_concatenate((*cmd)->args, token);
+	{
+		temp = ft_concatenate((*cmd)->args, token, ' ');
+		if ((*cmd)->args)
+			free((*cmd)->args);
+		(*cmd)->args = ft_strdup(temp);
+		free(temp);
+	}
 	if (special_char != 0)
 		mshell->start = 0;
 }
