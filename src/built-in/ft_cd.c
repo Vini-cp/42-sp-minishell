@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 02:20:08 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/16 17:25:57 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:13:40 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-void	ft_cd(char* new_path)
+void	ft_cd(char *new_path)
 {
 	chdir(new_path);
 }

@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 19:16:58 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 18:09:04 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:08:32 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_echo(char	**args)
 
 	counter = 1;
 	temp = args;
-	if (!ft_strcmp(temp[1], "-n"))
+	if (temp[1] && !ft_strcmp(temp[1], "-n"))
 		counter++;
 	while (temp[counter])
 	{
@@ -28,7 +28,7 @@ void	ft_echo(char	**args)
 			ft_putstr_fd(" ", 1);
 		counter++;
 	}
-	if (ft_strcmp(temp[1], "-n"))
+	if (!temp[1] || ft_strcmp(temp[1], "-n"))
 		ft_putstr_fd("\n", 1);
-	//global_exit = 0;
+	global_exit = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 18:40:26 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 19:33:43 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:08:29 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_env(char **args, t_shell *mshell)
 	if (args[1])
 	{
 		printf("env: invalid argument '%s'\n", args[1]);
-		//global_exit = 127;
+		global_exit = 127;
 		return ;
 	}
 	temp = mshell->firstvar;
@@ -29,5 +29,5 @@ void	ft_env(char **args, t_shell *mshell)
 			printf("%s\n", temp->full);
 		temp = temp->next;
 	}
-	//global_exit = 0;
+	global_exit = 0;
 }

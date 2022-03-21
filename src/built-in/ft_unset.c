@@ -6,11 +6,25 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:24:02 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 21:55:54 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:14:08 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
+
+static int	ft_varisvalid(char	*arg)
+{
+	int	counter;
+
+	counter = 0;
+	while (arg[counter])
+	{
+		if (!ft_isalnum(arg[counter]) && arg[counter] != '_')
+			return (0);
+		counter++;
+	}
+	return (1);
+}
 
 void	ft_freevar(t_var *var)
 {
@@ -49,13 +63,13 @@ void	ft_unset(char **args, t_shell *mshell)
 	int	counter;
 
 	counter = 1;
-	//global_exit = 0;
-	while(args[counter])
+	global_exit = 0;
+	while (args[counter])
 	{
-		if	(ft_strchr(args[counter], '='))
+		if (!ft_varisvalid(args[counter]))
 		{
 			printf("unset: `%s': not a valid identifier\n", args[counter]);
-			//global_exit = 1;
+			global_exit = 1;
 		}
 		else
 			ft_unsetvar(args[counter], mshell);

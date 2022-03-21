@@ -6,11 +6,29 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:40:51 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 22:01:36 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:07:52 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
+
+static int	ft_varisvalid(char	*arg)
+{
+	int	counter;
+
+	counter = 0;
+	while (arg[counter] && arg[counter] != '=')
+	{
+		if (!ft_isalnum(arg[counter]) && arg[counter] != '_')
+		{
+			printf("export: `%s': not a valid identifier\n", arg);
+			global_exit = 1;
+			return (0);
+		}
+		counter++;
+	}
+	return (1);
+}
 
 static void	ft_exportprint(t_shell *mshell)
 {
@@ -32,7 +50,7 @@ static void	ft_exportvar(t_shell *mshell, char *arg)
 	char	**split;
 	t_var	*temp;
 	t_var	*temp2;
-	
+
 	temp = mshell->firstvar;
 	split = ft_split(arg, '=');
 	while (temp && ft_strcmp(temp->key, split[0]))
@@ -56,22 +74,22 @@ void	ft_export(char	**args, t_shell *mshell)
 {
 	int	counter;
 
-	//global_exit = 0;
+	global_exit = 0;
 	counter = 1;
 	if (!args[1])
 		ft_exportprint(mshell);
-	else
+	while (args[counter])
 	{
-		while (args[counter])
+		if (args[counter][0] == '=')
 		{
-			if (args[counter][0] == '=')
-			{
-				printf("export: `%s': not a valid identifier\n", args[counter]);
-				//global_exit = 1;
-			}
-			else
-				ft_exportvar(mshell, args[counter]);
-			counter++;
+			printf("export: `%s': not a valid identifier\n", args[counter]);
+			global_exit = 1;
 		}
+		else
+		{
+			if (ft_varisvalid(args[counter]))
+				ft_exportvar(mshell, args[counter]);
+		}
+		counter++;
 	}
 }

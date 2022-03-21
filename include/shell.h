@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 21:18:57 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/21 18:05:57 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 #include "../libft/libft.h"
 
 #define PATH_MAX 4096
+
+extern int	global_exit;
 
 typedef enum e_in_out_type
 {
