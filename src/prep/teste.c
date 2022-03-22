@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:43:56 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/22 21:11:03 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/22 23:12:58 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void ft_printtables(t_shell *mshell)
 		printf("------------------------\n");
 		if (temp->cmd)
 			printf("CMD: %s\n", temp->cmd);
+		if (temp->cmd)
+			printf("PATH: %s\n", temp->cmd_path);
 		if (temp->args != NULL)
 		{
 			i = 0;

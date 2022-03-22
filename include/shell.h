@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/22 19:51:56 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/22 22:59:17 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ t_cmd_table	*ft_create_cmd_table(void);
 void		ft_startenv(t_shell *mshell, char **env);
 t_var		*ft_createvar(char *entry, char **split);
 void	ft_create_args(t_token *token, t_cmd_table **cmd, char **path);
+char	*ft_commandpath(char **paths, char *cmd);
 
 void		ft_pwd(void);
 void		ft_cd(char* new_path);
