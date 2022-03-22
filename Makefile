@@ -6,16 +6,15 @@ CFLAGS	:= -Wall -Wextra -Werror
 LFLAGS	:= -Llibft -lft -lreadline
 CC		:= gcc
 SRC		:=	shell.c \
-			teste.c \
 			lexer/lexer.c \
 			lexer/token.c \
 			expander/expander.c \
 			expander/expander_utils.c \
 			expander/trimquotes.c \
 			parser/ft_parser.c \
+			parser/ft_create_args.c \
 			parser/ft_create_cmd_table.c \
 			parser/ft_free_cmd_table.c \
-			executor/ft_executor.c \
 			built-in/ft_pwd.c \
 			built-in/ft_cd.c \
 			built-in/ft_exit.c \
@@ -23,11 +22,14 @@ SRC		:=	shell.c \
 			built-in/ft_env.c \
 			built-in/ft_export.c \
 			built-in/ft_unset.c \
+			utils/ft_commandpath.c \
 			utils/ft_concatenate.c \
+			utils/ft_iscmdpath.c \
 			utils/ft_iscommand.c \
-			utils/ft_pathfinder.c \
-			utils/ft_startenv.c \
-			utils/ft_special_char.c
+			utils/ft_special_char.c \
+			prep/ft_pathfinder.c \
+			prep/ft_startenv.c \
+			prep/teste.c
 
 SRC_FOLDER 	:= src
 OBJ_FOLDER	:= obj

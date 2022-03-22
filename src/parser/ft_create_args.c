@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 00:33:57 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/22 03:17:35 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/22 21:19:56 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	analyze_token(t_parser *parser_infos)
 		parser_infos->first_token = 0;
 		parser_infos->args_length++;
 	}
-	else if (parser_infos->isspecialchar && !parser_infos->quoted)
+	else if (parser_infos->isspecialchar > 0 && !parser_infos->quoted)
 	{
 		if (parser_infos->first_token)
 			parser_infos->first_token = 0;
@@ -43,7 +43,7 @@ void	ft_create_args(t_token *token, t_cmd_table **cmd, char **path)
 	t_parser parser_infos;
 
 	initialize_parser_infos(&parser_infos);
-	while (token != NULL && token->token != '|')
+	while (token != NULL && ft_strcmp(token->token, "|\0"))
 	{
 		parser_infos.iscommand = ft_iscommand(path, token->token);
 		parser_infos.iscmdpath = ft_iscmdpath(token->token);
