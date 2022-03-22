@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 21:18:57 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/22 19:16:53 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #ifndef SHELL_H
 # define SHELL_H
 
@@ -21,6 +22,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "../libft/libft.h"
+#include "utils.h"
+#include "parser.h"
 
 #define PATH_MAX 4096
 
@@ -49,7 +52,9 @@ typedef struct s_var
 typedef struct	s_cmd_table
 {
 	char				*cmd;
-	char				*args;
+	char				*cmd_path;
+	int					no_args;
+	char				**args;
 	int					input_type;
 	char				*input_arg;
 	int					output_type;
@@ -63,10 +68,7 @@ typedef struct	s_shell
 	char				**path;
 	int					tkcounter;
 	int					open;
-	int					start;
-	int					cmd_input;
-	int					cmd_output;
-	int					cmd_length;
+	int					start; 
 	struct s_token		*firsttoken;
 	struct s_var		*firstvar;
 	struct s_cmd_table	*cmdtable;
@@ -76,10 +78,7 @@ void		ft_lexer(t_shell *mshell);
 void		ft_parser(t_shell *mshell);
 void		ft_executor(t_shell *mshell, char **env);
 void		ft_freeptr(char **ptr);
-int			ft_iscommand(t_shell *mshell, char *str);
 char		**ft_pathfinder(t_shell *mshell);
-char		*ft_concatenate(char *left, char *right, char middle);
-int			ft_special_char(char *str);
 void		ft_printtokens(t_shell *mshell);
 void		ft_printtables(t_shell *mshell);
 void		ft_freetokens(t_shell *mshell);
