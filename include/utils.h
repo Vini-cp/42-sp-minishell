@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iscommand.c                                     :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 18:09:47 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/22 02:31:17 by vcordeir         ###   ########.fr       */
+/*   Created: 2022/03/19 03:10:15 by vcordeir          #+#    #+#             */
+/*   Updated: 2022/03/19 03:15:54 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/shell.h"
+#pragma once
+#ifndef UTILS_H
+# define UTILS_H
 
-int	ft_iscommand(char **paths, char *cmd)
-{
-	int		str_position;
-	char	*path;
+#include "../libft/libft.h"
 
-	str_position = 0;
-	while (paths[str_position] != NULL)
-	{
-		path = ft_strjoin(paths[str_position], cmd);
-		if (ft_iscmdpath(path))
-		{
-			free(path);
-			return (1);
-		}
-		free(path);
-		str_position++;
-	}
-	return (0);
-}
+int		ft_iscommand(char **paths, char *str);
+int		ft_iscmdpath(char *path);
+char	*ft_concatenate(char *left, char *right, char middle);
+int		ft_special_char(char *str);
+
+#endif

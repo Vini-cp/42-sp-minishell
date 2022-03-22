@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iscommand.c                                     :+:      :+:    :+:   */
+/*   ft_iscmdpath.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 18:09:47 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/22 02:31:17 by vcordeir         ###   ########.fr       */
+/*   Created: 2022/03/19 03:03:43 by vcordeir          #+#    #+#             */
+/*   Updated: 2022/03/22 02:30:34 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-int	ft_iscommand(char **paths, char *cmd)
-{
-	int		str_position;
-	char	*path;
+/*	
+	On success, zero is returned.
+	On error, -1 is returned,
+	and errno is set appropriately.
+	- F_OK tests for the existence of the file. 
+*/
 
-	str_position = 0;
-	while (paths[str_position] != NULL)
-	{
-		path = ft_strjoin(paths[str_position], cmd);
-		if (ft_iscmdpath(path))
-		{
-			free(path);
-			return (1);
-		}
-		free(path);
-		str_position++;
-	}
+int	ft_iscmdpath(char *path)
+{
+	if (access(path, F_OK) == 0)
+		return (1);
 	return (0);
 }
