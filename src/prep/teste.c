@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   teste.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:43:56 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 19:14:18 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/19 03:35:27 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/shell.h"
+#include "../../include/shell.h"
 
 void ft_printtokens(t_shell *mshell)
 {
