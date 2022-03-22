@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:41:04 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 19:14:43 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:49:34 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ void	ft_freetokens(t_shell *mshell)
 	while (temp)
 	{
 		free(temp->token);
+		temp->token = NULL;
 		temp2 = temp;
 		temp = temp->next;
 		free(temp2);
-		mshell->firsttoken = NULL;
+		temp2 = NULL;
 	}
+	mshell->firsttoken = NULL;
 }

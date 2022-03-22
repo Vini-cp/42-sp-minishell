@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/22 19:16:53 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/22 19:45:06 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 #include "parser.h"
 
 #define PATH_MAX 4096
+
+extern int	global_exit;
 
 typedef enum e_in_out_type
 {

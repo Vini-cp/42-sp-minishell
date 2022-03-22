@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 19:12:02 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/21 18:07:02 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 #include "../include/lexer.h"
 #include "../include/expander.h"
 
-/*
-inicializa dados do mshell, tkcounter é o contador utilizado para criação de tokens,
-open indica se há um token sendo criado(1)ou não(0), start marca o primeiro termo do token em relação a tkcounter,
-firstoken é um ponteiro para o primeiro token;
-*/
+int	global_exit;
+
 void	ft_start(t_shell *mshell, char **env)
 {
+	global_exit = 0;
 	mshell->firstvar = NULL;
-	ft_startenv(mshell, env);//
+	ft_startenv(mshell, env);
 	mshell->path = ft_pathfinder(mshell);
 	mshell->tkcounter = 0;
 	mshell->open  = 0;
@@ -30,9 +28,6 @@ void	ft_start(t_shell *mshell, char **env)
 	mshell->firsttoken = NULL;
 }
 
-/*
-Função que ocorre ao receber o sinal SIGINT(ctrl-C)
-*/
 void	ft_reprompt(int signum)
 {
 	(void)signum;
@@ -74,8 +69,8 @@ int	main(int argc, char **argv, char **env)
 			{
 				//ft_printtokens(mshell);
 				ft_parser(mshell);
-				ft_executor(mshell, env);
 				//ft_printtables(mshell);
+				ft_executor(mshell, env);
 				ft_free_cmd_table(mshell);
 			}
 			ft_freetokens(mshell);

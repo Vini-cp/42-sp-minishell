@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:33:24 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 22:17:43 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:02:41 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,28 @@ static int	ft_treatsquote(char *token, int counter, int dquotes)
 	return (counter);
 }
 
+static char	*ft_getglobal(char c)
+{
+	if (c == '?')
+		return (ft_itoa(global_exit));
+	return (NULL);
+}
+
 static char	*ft_treatdollar(char *token, t_var *firstvar, int count)
 {
 	char	*key;
 	char	*content;
 
-	key = ft_getvarkey(token, count);
-	content = ft_getvar(key, firstvar);
+	if (!ft_isalnum(token[count + 1]) && token[count + 1] != '_')
+	{
+		key = ft_substr(token, count + 1, 1);
+		content = ft_getglobal(token[count + 1]);
+	}
+	else
+	{
+		key = ft_getvarkey(token, count);
+		content = ft_getvar(key, firstvar);
+	}
 	key = ft_strjoinfree2("$", key);
 	if (!content)
 	{
@@ -61,7 +76,7 @@ static char	*ft_expand(char *token, t_var *firstvar)
 		}
 		else if (token[counter] == '\'')
 			counter = ft_treatsquote(token, counter, dquotes);
-		else if (token[counter] == '$')
+		else if (token[counter] == '$' && token[counter + 1])
 		{
 			token = ft_treatdollar(token, firstvar, counter);
 			token = ft_expand(token, firstvar);
