@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/23 02:41:31 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/23 03:20:20 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 static void	ft_execute(char* path, char** args, char** env)
 {
-	int ret;
+	int pid;
 
-	ret = fork();
-	if (ret == 0)
+	pid = fork();
+	if (pid == 0)
 	{
     	//child
 		execve(path, args, env);
 		perror("execve");
 		exit(1);
 	}
-	else if (ret < 0)
+	else if (pid == -1)
 	{
 		perror("fork");
 		return;
 	}
+	else
+		waitpid(pid, NULL, WUNTRACED);
 }
 
 static void	ft_exec_cmd(t_shell *mshell, char **env)

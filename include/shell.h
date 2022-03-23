@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/22 22:59:17 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/23 03:20:01 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <readline/history.h>
 #include <stdlib.h>
 #include <signal.h>
+#include <sys/wait.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include "../libft/libft.h"
