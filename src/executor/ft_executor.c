@@ -3,91 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/18 20:52:04 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/23 02:41:31 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-static char	**set_args(t_cmd_table *cmdtable)
+static void	ft_execute(char* path, char** args, char** env)
 {
-	char *temp;
-	char **args;
+	int ret;
 
-	temp = ft_strdup(cmdtable->cmd);
-	if (cmdtable->args)
-		temp = ft_concatenate(temp, cmdtable->args, ' ');
-	args = ft_split(temp, ' ');
-	return (args);
-}
-
-static void	free_args(char **args)
-{
-	int	str_position;
-
-	str_position = 0;
-	while(args[str_position] != NULL)
+	ret = fork();
+	if (ret == 0)
 	{
-		free(args[str_position]);
-		str_position++;
+    	//child
+		execve(path, args, env);
+		perror("execve");
+		exit(1);
 	}
-	free(args);
-}
-
-static char	*set_cmd_path(char **paths, char *cmd)
-{
-	int	str_position;
-	char *path_to_test;
-
-	str_position = 0;
-	while (paths[str_position] != NULL)
+	else if (ret < 0)
 	{
-		path_to_test = ft_concatenate(paths[str_position], cmd, '/');
-		if (access(path_to_test, F_OK) == 0)
-			return (path_to_test);
-		str_position++;
+		perror("fork");
+		return;
 	}
-	return (NULL);
 }
 
 static void	ft_exec_cmd(t_shell *mshell, char **env)
 {
 	t_cmd_table *cmdtable = mshell->cmdtable;
-	char **args;
-	char *path;
 
-	args = set_args(cmdtable);
 	if (ft_strcmp(cmdtable->cmd, "echo") == 0)
-		ft_echo(args);
+		ft_echo(cmdtable->args);
 	else if (ft_strcmp(cmdtable->cmd, "cd") == 0)
-		ft_cd(cmdtable->args);
+		ft_cd(cmdtable->args[1]);
 	else if (ft_strcmp(cmdtable->cmd, "pwd") == 0)
 		ft_pwd();
 	else if (ft_strcmp(cmdtable->cmd, "export") == 0)
-		ft_export(args, mshell);
+		ft_export(cmdtable->args, mshell);
 	else if (ft_strcmp(cmdtable->cmd, "unset") == 0)
-		ft_unset(args, mshell);
+		ft_unset(cmdtable->args, mshell);
 	else if (ft_strcmp(cmdtable->cmd, "env") == 0)
-		ft_env(args, mshell);
+		ft_env(cmdtable->args, mshell);
 	else if (ft_strcmp(cmdtable->cmd, "exit") == 0)
 		ft_exit(mshell);
 	else
-	{
-		path = set_cmd_path(mshell->path, cmdtable->cmd);
-		if (path != NULL)
-		{
-			execve(path, args, env);
-			free(path);
-		}
-	}
-	free_args(args);
+		ft_execute(cmdtable->cmd_path, cmdtable->args, env);
 }
 
 void	ft_executor(t_shell *mshell, char **env)
 {	
-	if (mshell->cmd_length == 1)
-		ft_exec_cmd(mshell, env);
+	ft_exec_cmd(mshell, env);
 }
