@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/23 02:43:51 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/23 03:11:15 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	ft_reprompt(int signum)
 void	ft_getinput(t_shell *mshell)
 {
 	char	*prompt;
-	
-	prompt = ft_strdup("minishell$ ");
+	char	cwd[PATH_MAX];
+
+	getcwd(cwd, sizeof(cwd));
+	prompt = ft_strjoin("minishell:", ft_strjoin(cwd, "$ "));
 	signal(SIGINT, ft_reprompt);
 	signal(SIGQUIT, SIG_IGN);
 	mshell->input = readline(prompt);
