@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_cmd_table.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 01:12:09 by coder             #+#    #+#             */
-/*   Updated: 2022/03/22 19:53:33 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:26:20 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_cmd_table	*ft_create_cmd_table(void)
 {
 	t_cmd_table	*new;
-	
+
 	new = malloc(sizeof(t_cmd_table));
 	new->cmd = NULL;
 	new->cmd_path = NULL;

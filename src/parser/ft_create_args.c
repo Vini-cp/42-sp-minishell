@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_args.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 00:33:57 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/22 21:19:56 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:27:13 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void	analyze_token(t_parser *parser_infos)
 {
-	if (parser_infos->first_token && (parser_infos->iscommand || parser_infos->iscmdpath))
+	if (parser_infos->first_token
+		&& (parser_infos->iscommand || parser_infos->iscmdpath))
 	{
 		parser_infos->first_token = 0;
 		parser_infos->args_length++;
@@ -40,7 +41,7 @@ static void	initialize_parser_infos(t_parser *parser_infos)
 
 void	ft_create_args(t_token *token, t_cmd_table **cmd, char **path)
 {
-	t_parser parser_infos;
+	t_parser	parser_infos;
 
 	initialize_parser_infos(&parser_infos);
 	while (token != NULL && ft_strcmp(token->token, "|\0"))
@@ -53,5 +54,5 @@ void	ft_create_args(t_token *token, t_cmd_table **cmd, char **path)
 		token = token->next;
 	}
 	if (parser_infos.args_length)
-		(*cmd)->args = malloc((parser_infos.args_length + 1) * sizeof(char*));
+		(*cmd)->args = malloc((parser_infos.args_length + 1) * sizeof(char *));
 }

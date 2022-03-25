@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_iscommand.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 18:09:47 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/23 02:43:20 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:20:59 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	ft_iscommand(char **paths, char *cmd)
 	char	*path;
 
 	str_position = 0;
-	if (ft_strcmp(cmd, "cd\0") == 0 || ft_strcmp(cmd, "export\0") == 0 || 
-		ft_strcmp(cmd, "unset\0") == 0 || ft_strcmp(cmd, "exit\0") == 0)
+	if (ft_strcmp(cmd, "cd\0") == 0 || ft_strcmp(cmd, "export\0") == 0
+		|| ft_strcmp(cmd, "unset\0") == 0 || ft_strcmp(cmd, "exit\0") == 0)
 		return (1);
-	while (paths[str_position] != NULL)
+	while (paths && paths[str_position] != NULL)
 	{
 		path = ft_strjoin(paths[str_position], cmd);
 		if (ft_iscmdpath(path))

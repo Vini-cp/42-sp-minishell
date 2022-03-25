@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:40:51 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/21 19:07:52 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:14:04 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_varisvalid(char	*arg)
 		if (!ft_isalnum(arg[counter]) && arg[counter] != '_')
 		{
 			printf("export: `%s': not a valid identifier\n", arg);
-			global_exit = 1;
+			g_exit = 1;
 			return (0);
 		}
 		counter++;
@@ -74,7 +74,7 @@ void	ft_export(char	**args, t_shell *mshell)
 {
 	int	counter;
 
-	global_exit = 0;
+	g_exit = 0;
 	counter = 1;
 	if (!args[1])
 		ft_exportprint(mshell);
@@ -83,7 +83,7 @@ void	ft_export(char	**args, t_shell *mshell)
 		if (args[counter][0] == '=')
 		{
 			printf("export: `%s': not a valid identifier\n", args[counter]);
-			global_exit = 1;
+			g_exit = 1;
 		}
 		else
 		{

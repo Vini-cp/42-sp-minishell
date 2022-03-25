@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:34:27 by coder             #+#    #+#             */
-/*   Updated: 2022/03/22 23:13:03 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:26:09 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	initialize_parser_infos(t_parser *parser_infos)
 	parser_infos->last_token = 0;
 }
 
-static void handle_special_char(int s_char, t_cmd_table **cmd, t_parser *parser_infos)
+static void	handle_special_char(int s_char, t_cmd_table **cmd, t_parser *parser_infos)
 {
 	if (parser_infos->first_token)
 		parser_infos->first_token = 0;
@@ -49,10 +49,11 @@ static void handle_special_char(int s_char, t_cmd_table **cmd, t_parser *parser_
 	}
 }
 
-static void handle_cmd(char* token, t_cmd_table **cmd, t_parser *parser_infos)
+static void	handle_cmd(char *token, t_cmd_table **cmd, t_parser *parser_infos)
 {
 	char	**split_cmd;
 	int		last_element;
+
 	if (parser_infos->iscommand)
 	{
 		(*cmd)->cmd = ft_strdup(token);
@@ -73,7 +74,7 @@ static void handle_cmd(char* token, t_cmd_table **cmd, t_parser *parser_infos)
 	(*cmd)->no_args++;
 }
 
-static void analyze_token(char* token, t_cmd_table **cmd, t_parser *parser_infos)
+static void	analyze_token(char *token, t_cmd_table **cmd, t_parser *parser_infos)
 {
 	if (parser_infos->first_token && (parser_infos->iscommand || parser_infos->iscmdpath))
 		handle_cmd(token, cmd, parser_infos);
@@ -101,14 +102,16 @@ static void analyze_token(char* token, t_cmd_table **cmd, t_parser *parser_infos
 void	ft_parser(t_shell *mshell)
 {
 	t_token		*temp_tok;
-	t_cmd_table	*cmd = ft_create_cmd_table();
-	t_parser parser_infos;
+	t_cmd_table	*cmd;
+	t_parser	parser_infos;
 
+	cmd = ft_create_cmd_table();
+	mshell->path = ft_pathfinder(mshell);
 	initialize_parser_infos(&parser_infos);
 	parser_infos.path = mshell->path;
 	temp_tok = mshell->firsttoken;
 	mshell->cmdtable = cmd;
-	while(temp_tok != NULL)
+	while (temp_tok != NULL)
 	{
 		if (parser_infos.first_token)
 			ft_create_args(temp_tok, &cmd, mshell->path);

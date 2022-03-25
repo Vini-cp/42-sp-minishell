@@ -6,11 +6,11 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:34:10 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/25 15:42:27 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:07:19 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/shell.h"
+#include "../../include/lexer.h"
 
 static t_token	*ft_closetk(t_token *token, t_shell *mshell)
 {

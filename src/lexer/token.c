@@ -6,11 +6,11 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:41:04 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/25 15:42:33 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:07:24 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/shell.h"
+#include "../../include/lexer.h"
 
 t_token	*ft_createtk(void)
 {
