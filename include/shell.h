@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/23 03:20:01 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:44:56 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct	s_shell
 
 void		ft_lexer(t_shell *mshell);
 void		ft_parser(t_shell *mshell);
-void		ft_executor(t_shell *mshell, char **env);
+void		ft_executor(t_shell *mshell);
 void		ft_freeptr(char **ptr);
 char		**ft_pathfinder(t_shell *mshell);
 void		ft_printtokens(t_shell *mshell);
@@ -91,6 +91,7 @@ void		ft_startenv(t_shell *mshell, char **env);
 t_var		*ft_createvar(char *entry, char **split);
 void	ft_create_args(t_token *token, t_cmd_table **cmd, char **path);
 char	*ft_commandpath(char **paths, char *cmd);
+char	**ft_getenv(t_var *var);
 
 void		ft_pwd(void);
 void		ft_cd(char* new_path);
@@ -101,5 +102,8 @@ void		ft_unset(char **args, t_shell *mshell);
 void		ft_unsetvar(char *arg, t_shell *mshell);
 void		ft_freevar(t_var *var);
 void		ft_env(char **args, t_shell *mshell);
+
+#include "lexer.h"
+#include "expander.h"
 
 #endif

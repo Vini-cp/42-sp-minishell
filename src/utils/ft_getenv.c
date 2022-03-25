@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.c                                            :+:      :+:    :+:   */
+/*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/09 14:41:04 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/25 15:42:33 by chideyuk         ###   ########.fr       */
+/*   Created: 2022/03/23 15:47:57 by chideyuk          #+#    #+#             */
+/*   Updated: 2022/03/25 15:29:36 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-t_token	*ft_createtk(void)
+char	**ft_getenv(t_var *var)
 {
-	t_token	*new;
+	char	**minienv;
+	t_var	*temp;
+	int		counter;
 
-	new = malloc(sizeof(*new));
-	new->token = NULL;
-	new->next = NULL;
-	new->quoted = 0;
-	return (new);
-}
-
-void	ft_freetokens(t_shell *mshell)
-{
-	t_token	*temp;
-	t_token	*temp2;
-
-	temp = mshell->firsttoken;
+	counter = 0;
+	temp = var;
 	while (temp)
 	{
-		free(temp->token);
-		temp->token = NULL;
-		temp2 = temp;
+		if (ft_strchr(temp->full, '='))
+			counter++;
 		temp = temp->next;
-		free(temp2);
-		temp2 = NULL;
 	}
-	mshell->firsttoken = NULL;
+	minienv = malloc(sizeof(char *) * (counter + 1));
+	counter = 0;
+	temp = var;
+	while (temp)
+	{
+		if (ft_strchr(temp->full, '='))
+		{
+			minienv[counter] = ft_strdup(temp->full);
+			counter++;
+		}
+		temp = temp->next;
+	}
+	return (minienv);
 }

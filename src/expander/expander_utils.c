@@ -6,11 +6,11 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:34:55 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/17 16:34:07 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:44:26 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/expander.h"
+#include "../../include/shell.h"
 
 char	*ft_getvarkey(char	*str, int counter)
 {

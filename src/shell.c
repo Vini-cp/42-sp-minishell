@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/23 03:11:15 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:44:43 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/shell.h"
-#include "../include/lexer.h"
-#include "../include/expander.h"
 
 int	global_exit;
 
@@ -72,7 +70,7 @@ int	main(int argc, char **argv, char **env)
 				// ft_printtokens(mshell);
 				ft_parser(mshell);
 				// ft_printtables(mshell);
-				ft_executor(mshell, env);
+				ft_executor(mshell);
 				ft_free_cmd_table(mshell);
 			}
 			ft_freetokens(mshell);

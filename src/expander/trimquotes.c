@@ -6,11 +6,11 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:10:52 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 19:13:48 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:44:36 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/expander.h"
+#include "../../include/shell.h"
 
 static char	*ft_trim(char *token, int counter)
 {

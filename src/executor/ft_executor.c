@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/23 03:20:20 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:28:45 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-static void	ft_execute(char* path, char** args, char** env)
+static void	ft_execute(char* path, char** args, char** minienv)
 {
 	int pid;
 
@@ -20,7 +20,7 @@ static void	ft_execute(char* path, char** args, char** env)
 	if (pid == 0)
 	{
     	//child
-		execve(path, args, env);
+		execve(path, args, minienv);
 		perror("execve");
 		exit(1);
 	}
@@ -33,10 +33,12 @@ static void	ft_execute(char* path, char** args, char** env)
 		waitpid(pid, NULL, WUNTRACED);
 }
 
-static void	ft_exec_cmd(t_shell *mshell, char **env)
+static void	ft_exec_cmd(t_shell *mshell)
 {
 	t_cmd_table *cmdtable = mshell->cmdtable;
-
+	char	**minienv;
+	
+	minienv = ft_getenv(mshell->firstvar);
 	if (ft_strcmp(cmdtable->cmd, "echo") == 0)
 		ft_echo(cmdtable->args);
 	else if (ft_strcmp(cmdtable->cmd, "cd") == 0)
@@ -52,10 +54,10 @@ static void	ft_exec_cmd(t_shell *mshell, char **env)
 	else if (ft_strcmp(cmdtable->cmd, "exit") == 0)
 		ft_exit(mshell);
 	else
-		ft_execute(cmdtable->cmd_path, cmdtable->args, env);
+		ft_execute(cmdtable->cmd_path, cmdtable->args, minienv);
 }
 
-void	ft_executor(t_shell *mshell, char **env)
+void	ft_executor(t_shell *mshell)
 {	
-	ft_exec_cmd(mshell, env);
+	ft_exec_cmd(mshell);
 }

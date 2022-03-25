@@ -6,11 +6,11 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:33:24 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/21 19:02:41 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:44:31 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/expander.h"
+#include "../../include/shell.h"
 
 static int	ft_treatsquote(char *token, int counter, int dquotes)
 {
