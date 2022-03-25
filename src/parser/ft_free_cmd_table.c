@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_cmd_table.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:36:48 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/22 23:14:16 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/25 20:33:08 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_free_cmd_table(t_shell *mshell)
 {
 	t_cmd_table	*temp;
+	t_cmd_table	*temp2;
 
 	temp = mshell->cmdtable;
 	while (temp)
@@ -29,7 +30,8 @@ void	ft_free_cmd_table(t_shell *mshell)
 			free(temp->input_arg);
 		if (temp->output_type)
 			free(temp->output_arg);
-		free(temp);
+		temp2 = temp;
 		temp = temp->next;
+		free(temp2);
 	}
 }
