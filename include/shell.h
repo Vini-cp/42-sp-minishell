@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/29 16:55:33 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:23:05 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void		ft_lexer(t_shell *mshell);
 void		ft_parser(t_shell *mshell);
 void		ft_executor(t_shell *mshell);
 void		ft_freeptr(char **ptr);
-char		**ft_pathfinder(t_shell *mshell);
+void		ft_pathfinder(t_shell *mshell);
 void		ft_printtokens(t_shell *mshell);
 void		ft_printtables(t_shell *mshell);
 void		ft_freetokens(t_shell *mshell);

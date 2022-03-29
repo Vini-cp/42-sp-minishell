@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:34:27 by coder             #+#    #+#             */
-/*   Updated: 2022/03/25 18:26:09 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:21:47 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	ft_parser(t_shell *mshell)
 	t_parser	parser_infos;
 
 	cmd = ft_create_cmd_table();
-	mshell->path = ft_pathfinder(mshell);
+	ft_pathfinder(mshell);
 	initialize_parser_infos(&parser_infos);
 	parser_infos.path = mshell->path;
 	temp_tok = mshell->firsttoken;

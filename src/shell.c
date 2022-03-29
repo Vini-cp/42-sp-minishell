@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/29 16:40:06 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:24:47 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_start(t_shell *mshell, char **env)
 	mshell->open = 0;
 	mshell->start = 0;
 	mshell->firsttoken = NULL;
+	mshell->path = NULL;
 }
 
 void	ft_reprompt(int signum)
