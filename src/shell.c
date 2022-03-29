@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/25 18:18:06 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:40:06 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_getinput(t_shell *mshell)
 	char	cwd[PATH_MAX];
 
 	getcwd(cwd, sizeof(cwd));
-	prompt = ft_strjoin("minishell:", ft_strjoin(cwd, "$ "));
+	prompt = ft_strjoinfree2("minishell:", ft_strjoin(cwd, "$ "));
 	signal(SIGINT, ft_reprompt);
 	signal(SIGQUIT, SIG_IGN);
 	mshell->input = readline(prompt);

@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/25 18:06:39 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:55:33 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ t_var		*ft_createvar(char *entry, char **split);
 void		ft_create_args(t_token *token, t_cmd_table **cmd, char **path);
 char		*ft_commandpath(char **paths, char *cmd);
 char		**ft_getenv(t_var *var);
+void		ft_free_env(t_shell *mshell);
 
 void		ft_pwd(void);
 void		ft_cd(char *new_path);
