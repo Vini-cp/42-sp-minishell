@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/25 15:28:45 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:04:06 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	ft_exec_cmd(t_shell *mshell)
 	t_cmd_table *cmdtable = mshell->cmdtable;
 	char	**minienv;
 	
-	minienv = ft_getenv(mshell->firstvar);
 	if (ft_strcmp(cmdtable->cmd, "echo") == 0)
 		ft_echo(cmdtable->args);
 	else if (ft_strcmp(cmdtable->cmd, "cd") == 0)
@@ -54,7 +53,10 @@ static void	ft_exec_cmd(t_shell *mshell)
 	else if (ft_strcmp(cmdtable->cmd, "exit") == 0)
 		ft_exit(mshell);
 	else
+	{
+		minienv = ft_getenv(mshell->firstvar);
 		ft_execute(cmdtable->cmd_path, cmdtable->args, minienv);
+	}
 }
 
 void	ft_executor(t_shell *mshell)
