@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:36:48 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/25 20:33:08 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:56:18 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_free_cmd_table(t_shell *mshell)
 		if (temp->cmd_path)
 			free(temp->cmd_path);
 		if (temp->args)
-			free(temp->args);
+			ft_freeptr(temp->args);
 		if (temp->input_type)
 			free(temp->input_arg);
 		if (temp->output_type)
