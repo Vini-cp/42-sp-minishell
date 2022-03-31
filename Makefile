@@ -16,6 +16,8 @@ SRC		:=	shell.c \
 			parser/ft_create_cmd_table.c \
 			parser/ft_free_cmd_table.c \
 			executor/ft_executor.c \
+			executor/ft_exec_cmd.c \
+			executor/ft_exec_redir.c \
 			built-in/ft_pwd.c \
 			built-in/ft_cd.c \
 			built-in/ft_exit.c \
