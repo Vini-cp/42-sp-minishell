@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 00:08:11 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/25 03:12:30 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:27:24 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,20 @@
 void	ft_output_redirection(char *file_path, int mode, char *txt)
 {
 	int	fd;
-	int	flag;
+	int	flag_mode;
+	int flag_permission;
 	
+	flag_permission = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
 	if (mode == ONE_CHAR)
-		flag = O_WRONLY;
+		flag_mode = O_TRUNC;
 	else if (mode == TWO_CHARS)
-		flag = O_APPEND;
+		flag_mode = O_APPEND;
 
-	fd = open(file_path, flag | O_CREAT | S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-	write(fd, txt, ft_strlen(txt));
+	if (access(file_path, F_OK) == 0)
+		fd = open(file_path, flag_mode | O_WRONLY | flag_permission);
+	else
+		fd = open(file_path, flag_mode | O_CREAT | O_WRONLY | flag_permission);
+	write(fd, txt, strlen(txt));
+	write(fd, "\n", 1);
 	close(fd);
 }
