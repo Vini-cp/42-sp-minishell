@@ -2,3 +2,4 @@ obj/*
 minishell
 vgcore*
 .nfs*
+test.c
