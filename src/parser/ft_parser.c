@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:34:27 by coder             #+#    #+#             */
-/*   Updated: 2022/03/22 23:13:03 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/27 00:04:26 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,8 @@ static void handle_special_char(int s_char, t_cmd_table **cmd, t_parser *parser_
 
 static void handle_cmd(char* token, t_cmd_table **cmd, t_parser *parser_infos)
 {
-	char	**split_cmd;
-	int		last_element;
-	if (parser_infos->iscommand)
-	{
-		(*cmd)->cmd = ft_strdup(token);
-		(*cmd)->cmd_path = ft_commandpath(parser_infos->path, token);
-	}
-	else if (parser_infos->iscmdpath)
-	{
-		split_cmd = ft_split(token, '/');
-		last_element = 0;
-		while (split_cmd[last_element] != NULL)
-			last_element++;
-		(*cmd)->cmd = ft_strdup(split_cmd[last_element - 1]);
-		(*cmd)->cmd_path = ft_strdup(token);
-		free(split_cmd);
-	}
+	(*cmd)->cmd = ft_strdup(token);
+	(*cmd)->cmd_path = ft_commandpath(parser_infos->path, token);
 	(*cmd)->args[(*cmd)->no_args] = ft_strdup(token);
 	parser_infos->first_token = 0;
 	(*cmd)->no_args++;
@@ -75,7 +60,7 @@ static void handle_cmd(char* token, t_cmd_table **cmd, t_parser *parser_infos)
 
 static void analyze_token(char* token, t_cmd_table **cmd, t_parser *parser_infos)
 {
-	if (parser_infos->first_token && (parser_infos->iscommand || parser_infos->iscmdpath))
+	if (parser_infos->first_token && (parser_infos->isspecialchar == -1 || (parser_infos->isspecialchar >= 0 && parser_infos->quoted)))
 		handle_cmd(token, cmd, parser_infos);
 	else if (parser_infos->isspecialchar >= 0 && !parser_infos->quoted)
 		handle_special_char(parser_infos->isspecialchar, cmd, parser_infos);
@@ -108,6 +93,7 @@ void	ft_parser(t_shell *mshell)
 	parser_infos.path = mshell->path;
 	temp_tok = mshell->firsttoken;
 	mshell->cmdtable = cmd;
+	mshell->no_cmds = 1;
 	while(temp_tok != NULL)
 	{
 		if (parser_infos.first_token)
@@ -115,6 +101,8 @@ void	ft_parser(t_shell *mshell)
 		parser_infos.iscommand = ft_iscommand(mshell->path, temp_tok->token);
 		parser_infos.iscmdpath = ft_iscmdpath(temp_tok->token);
 		parser_infos.isspecialchar = ft_special_char(temp_tok->token);
+		if (parser_infos.isspecialchar == 0)
+			mshell->no_cmds++;
 		parser_infos.quoted = temp_tok->quoted;
 		if (temp_tok->next == NULL)
 			parser_infos.last_token = 1;

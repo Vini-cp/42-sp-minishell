@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 00:33:57 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/22 21:19:56 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/26 23:31:07 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	analyze_token(t_parser *parser_infos)
 {
-	if (parser_infos->first_token && (parser_infos->iscommand || parser_infos->iscmdpath))
+	if (parser_infos->first_token || parser_infos->quoted)
 	{
 		parser_infos->first_token = 0;
 		parser_infos->args_length++;
