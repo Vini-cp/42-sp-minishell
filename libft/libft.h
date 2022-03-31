@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:33:37 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/15 17:37:46 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/27 01:41:51 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define LIBFT_H
 
 # include <stdlib.h>
+# include <unistd.h>
+
+# define BUFFER_SIZE 32
 
 int		ft_isalpha(int c);
 int		ft_isalnum(int c);
@@ -54,5 +57,8 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_strcmp(char *s1, char *s2);
+int		ft_memdel(void **ptr);
+int		get_next_line(int fd, char **line);
+
 
 #endif

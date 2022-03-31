@@ -1,7 +1,7 @@
 .PHONY:	clean fclean re all
 
 NAME	:= libft.a
-CFLAGS	:= -Wall -Wextra -Werror -c
+CFLAGS	:= -Wall -Wextra -Werror -I./ -c
 CC	:= clang
 SRCS	:= ft_atoi.c \
 		ft_bzero.c \
@@ -36,17 +36,17 @@ SRCS	:= ft_atoi.c \
 		ft_strtrim.c \
 		ft_substr.c \
 		ft_tolower.c \
-		ft_toupper.c
+		ft_toupper.c \
+		ft_memdel.c \
+		get_next_line.c
 
-OBJ	:= $(SRCS:%.c=%.o)
+OBJ := $(SRCS:.c=.o)
 
 all	: $(NAME)
 
 $(NAME)	: $(OBJ)
+	gcc $(CFLAGS) $(SRCS)
 	ar rc $(NAME) $(OBJ)
-
-$(OBJ)	: $(SRCS)
-	$(CC) $(CFLAGS) $(SRCS)
 
 clean	:
 	rm -f $(OBJ)
