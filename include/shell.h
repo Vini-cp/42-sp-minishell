@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/31 19:33:45 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:38:55 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 #ifndef SHELL_H
 # define SHELL_H
 
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdlib.h>
-#include <signal.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include "../libft/libft.h"
-#include "utils.h"
-#include "parser.h"
+# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <stdlib.h>
+# include <signal.h>
+# include <sys/wait.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include "../libft/libft.h"
+# include "utils.h"
+# include "parser.h"
 
-#define PATH_MAX 4096
+# define PATH_MAX 4096
 
-extern int	global_exit;
+extern int	g_exit;
 
 typedef enum e_in_out_type
 {
 	NO_CHAR,
 	ONE_CHAR,
 	TWO_CHARS
-} t_in_out_type;
+}			t_in_out_type;
 
 typedef struct s_token
 {
@@ -52,7 +52,7 @@ typedef struct s_var
 	struct s_var	*next;
 }					t_var;
 
-typedef struct	s_cmd_table
+typedef struct s_cmd_table
 {
 	char				*cmd;
 	char				*cmd_path;
@@ -65,7 +65,7 @@ typedef struct	s_cmd_table
 	struct s_cmd_table	*next;
 }				t_cmd_table;
 
-typedef struct	s_shell
+typedef struct s_shell
 {
 	char				*input;
 	char				**path;
@@ -80,9 +80,9 @@ typedef struct	s_shell
 
 void		ft_lexer(t_shell *mshell);
 void		ft_parser(t_shell *mshell);
-void		ft_executor(t_shell *mshell, char **env);
+void		ft_executor(t_shell *mshell);
 void		ft_freeptr(char **ptr);
-char		**ft_pathfinder(t_shell *mshell);
+void		ft_pathfinder(t_shell *mshell);
 void		ft_printtokens(t_shell *mshell);
 void		ft_printtables(t_shell *mshell);
 void		ft_freetokens(t_shell *mshell);
@@ -94,9 +94,11 @@ void		ft_create_args(t_token *token, t_cmd_table **cmd, char **path);
 char		*ft_commandpath(char **paths, char *cmd);
 void		ft_exec_cmd(t_shell *mshell, char **env, int order);
 void		ft_exec_redir(t_shell *mshell, char **env);
+char		**ft_getenv(t_var *var);
+void		ft_free_env(t_shell *mshell);
 
 void		ft_pwd(void);
-void		ft_cd(char* new_path);
+void		ft_cd(char *new_path);
 void		ft_exit(t_shell *mshell);
 void		ft_echo(char **args);
 void		ft_export(char	**args, t_shell *mshell);

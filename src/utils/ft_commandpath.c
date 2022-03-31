@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_commandpath.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 00:21:27 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/22 19:54:52 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:04:27 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	*ft_commandpath(char **paths, char *cmd)
 		path = ft_strjoin(paths[str_position], cmd);
 		if (ft_iscmdpath(path))
 			return (path);
+		free (path);
 		str_position++;
 	}
 	return (NULL);

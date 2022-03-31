@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:34:27 by coder             #+#    #+#             */
-/*   Updated: 2022/03/27 00:04:26 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:40:16 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	initialize_parser_infos(t_parser *parser_infos)
 	parser_infos->last_token = 0;
 }
 
-static void handle_special_char(int s_char, t_cmd_table **cmd, t_parser *parser_infos)
+static void	handle_special_char(int s_char, t_cmd_table **cmd, t_parser *parser_infos)
 {
 	if (parser_infos->first_token)
 		parser_infos->first_token = 0;
@@ -49,7 +49,7 @@ static void handle_special_char(int s_char, t_cmd_table **cmd, t_parser *parser_
 	}
 }
 
-static void handle_cmd(char* token, t_cmd_table **cmd, t_parser *parser_infos)
+static void	handle_cmd(char *token, t_cmd_table **cmd, t_parser *parser_infos)
 {
 	(*cmd)->cmd = ft_strdup(token);
 	(*cmd)->cmd_path = ft_commandpath(parser_infos->path, token);
@@ -58,7 +58,7 @@ static void handle_cmd(char* token, t_cmd_table **cmd, t_parser *parser_infos)
 	(*cmd)->no_args++;
 }
 
-static void analyze_token(char* token, t_cmd_table **cmd, t_parser *parser_infos)
+static void	analyze_token(char *token, t_cmd_table **cmd, t_parser *parser_infos)
 {
 	if (parser_infos->first_token && (parser_infos->isspecialchar == -1 || (parser_infos->isspecialchar >= 0 && parser_infos->quoted)))
 		handle_cmd(token, cmd, parser_infos);
@@ -86,9 +86,11 @@ static void analyze_token(char* token, t_cmd_table **cmd, t_parser *parser_infos
 void	ft_parser(t_shell *mshell)
 {
 	t_token		*temp_tok;
-	t_cmd_table	*cmd = ft_create_cmd_table();
-	t_parser parser_infos;
+	t_cmd_table	*cmd;
+	t_parser	parser_infos;
 
+	cmd = ft_create_cmd_table();
+	ft_pathfinder(mshell);
 	initialize_parser_infos(&parser_infos);
 	parser_infos.path = mshell->path;
 	temp_tok = mshell->firsttoken;

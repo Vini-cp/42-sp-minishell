@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:20:08 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/18 21:28:56 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:55:15 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,29 @@ void	ft_startenv(t_shell *mshell, char **env)
 		temp = temp->next;
 		counter++;
 	}
+}
+
+void	ft_free_env(t_shell *mshell)
+{
+	t_var	*temp;
+	t_var	*temp2;
+
+	temp = mshell->firstvar;
+	while (temp)
+	{
+		free(temp->full);
+		temp->full = NULL;
+		free(temp->key);
+		temp->key = NULL;
+		if (temp->content)
+		{
+			free(temp->content);
+			temp->content = NULL;
+		}
+		temp2 = temp;
+		temp = temp->next;
+		free(temp2);
+		temp2 = NULL;
+	}
+	mshell->firstvar = NULL;
 }
