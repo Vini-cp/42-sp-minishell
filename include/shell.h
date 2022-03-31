@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/23 03:20:01 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/03/25 03:23:30 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ typedef struct	s_shell
 	char				**path;
 	int					tkcounter;
 	int					open;
-	int					start; 
+	int					start;
+	int					no_cmds;
 	struct s_token		*firsttoken;
 	struct s_var		*firstvar;
 	struct s_cmd_table	*cmdtable;
@@ -101,5 +102,7 @@ void		ft_unset(char **args, t_shell *mshell);
 void		ft_unsetvar(char *arg, t_shell *mshell);
 void		ft_freevar(t_var *var);
 void		ft_env(char **args, t_shell *mshell);
+void		ft_output_redirection(char *file_path, int mode, char *txt);
+void		ft_here_document(char *input);
 
 #endif
