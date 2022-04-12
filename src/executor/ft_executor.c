@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/31 19:40:51 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:46:00 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,13 @@ static void ft_exec_mult_cmd(t_shell *mshell, char **env)
 	}
 }
 
-void	ft_executor(t_shell *mshell, char **env)
+void	ft_executor(t_shell *mshell)
 {
+	char	**minienv;
+
+	minienv = ft_getenv(mshell->firstvar);
 	if (mshell->no_cmds == 1)
-		ft_exec_one_cmd(mshell, env);
+		ft_exec_one_cmd(mshell, minienv);
 	else
-		ft_exec_mult_cmd(mshell, env);
+		ft_exec_mult_cmd(mshell, minienv);
 }
