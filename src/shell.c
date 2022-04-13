@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/29 18:24:47 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:44:23 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int argc, char **argv, char **env)
 			{
 				// ft_printtokens(mshell);
 				ft_parser(mshell);
-				// ft_printtables(mshell);
+				//ft_printtables(mshell);
 				ft_executor(mshell);
 				ft_free_cmd_table(mshell);
 			}

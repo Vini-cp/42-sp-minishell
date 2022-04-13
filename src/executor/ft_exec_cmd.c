@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:30:15 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/31 19:30:34 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:27:06 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,10 @@ static void	ft_execute(char* path, char** args, char** env)
 		waitpid(pid, NULL, WUNTRACED);
 }
 
-void	ft_exec_cmd(t_shell *mshell, char **env, int order)
+void	ft_exec_cmd(t_shell *mshell, char **env, int order, t_cmd_table *cmdtable)
 {
-	t_cmd_table *cmdtable = mshell->cmdtable;
-	while (order > 1)
-	{
-		cmdtable = cmdtable->next;
-		order--;
-	}
-
+	if (order == 1)
+		order = 2;
 	if (ft_strcmp(cmdtable->cmd, "echo") == 0)
 		ft_echo(cmdtable->args);
 	else if (ft_strcmp(cmdtable->cmd, "cd") == 0)

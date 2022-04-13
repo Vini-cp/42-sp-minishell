@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_redir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:32:56 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/31 19:33:47 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/13 20:02:37 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-void	ft_exec_redir(t_shell *mshell, char **env)
+void	ft_exec_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 {
-	t_cmd_table *cmdtable = mshell->cmdtable;
 	int	pid;
 	int	fd[2];
 	int	out;
@@ -26,7 +25,7 @@ void	ft_exec_redir(t_shell *mshell, char **env)
 	{
 		close(fd[0]);
 		dup2(fd[1], 1);
-		ft_exec_cmd(mshell, env, 1);
+		ft_exec_cmd(mshell, env, 1, cmdtable);
 		close(fd[1]);
 		waitpid(pid, NULL, WUNTRACED);
 	}
@@ -42,4 +41,12 @@ void	ft_exec_redir(t_shell *mshell, char **env)
 		}
 		close(fd[0]);
 	}
+}
+
+void	ft_redirstart(t_shell *mshell, char **env, t_cmd_table *cmdtable)
+{
+	t_cmd_table	*temp;
+	
+	temp = cmdtable;
+	
 }
