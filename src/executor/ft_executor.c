@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/13 23:40:24 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/14 02:44:54 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static int	ft_multiaux(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 	ft_exec_cmd(mshell, env, 1, temp);
 	close(fd[1]);
 	dup2(fd[0], 0);
-	if (temp->next)
+	if (temp->next->next)
 	{
 		fdaux = ft_multiaux(mshell, env, temp->next);
 		close(fdaux);
-	}	
+	}
 	return (fd[0]);
 }
 
