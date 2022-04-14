@@ -25,7 +25,6 @@ SRC		:=	shell.c \
 			built-in/ft_env.c \
 			built-in/ft_export.c \
 			built-in/ft_unset.c \
-			built-in/ft_output_redirection.c \
 			built-in/ft_here_document.c \
 			utils/ft_commandpath.c \
 			utils/ft_concatenate.c \

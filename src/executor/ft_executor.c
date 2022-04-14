@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/14 02:44:54 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/14 23:20:18 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,19 @@
 static void	ft_exec_one_cmd(t_shell *mshell, char **env)
 {
 	t_cmd_table *cmdtable = mshell->cmdtable;
-
+	int			stdin;
+	int 		stdout;	
+	
 	if (cmdtable->cmd && !(cmdtable->input_type || cmdtable->output_type))
 		ft_exec_cmd(mshell, env, 1, cmdtable);
 	else
-		ft_exec_redir(mshell, env, cmdtable);
+	{
+		stdin = dup(0);
+		stdout = dup(1);
+		ft_redir(mshell, env, cmdtable, stdout);
+		dup2(stdin, 0);
+		dup2(stdout, 1);
+	}
 }
 
 static int	ft_multiaux(t_shell *mshell, char **env, t_cmd_table *cmdtable)
@@ -34,7 +42,7 @@ static int	ft_multiaux(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 	ft_exec_cmd(mshell, env, 1, temp);
 	close(fd[1]);
 	dup2(fd[0], 0);
-	if (temp->next->next)
+	if (temp->next && temp->next->next)
 	{
 		fdaux = ft_multiaux(mshell, env, temp->next);
 		close(fdaux);
@@ -54,8 +62,7 @@ static void ft_exec_mult_cmd(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 	stdin = dup(0);
 	stdout = dup(1);
 	dup2(fd[1], 1);
-	//ft_redirstart(mshell, env, temp)
-	ft_exec_cmd(mshell, env, 1, temp);
+	ft_redir(mshell, env, temp, stdout);
 	close(fd[1]);
 	dup2(fd[0], 0);
 	temp = temp->next;
@@ -64,7 +71,8 @@ static void ft_exec_mult_cmd(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 	while (temp->next)
 		temp = temp->next;
 	dup2(stdout, 1);
-	ft_exec_cmd(mshell, env, 1, temp);
+	ft_redir(mshell, env, temp, stdout);
+	dup2(stdout, 1);
 	dup2(stdin, 0);
 	close(fd[0]);
 }
