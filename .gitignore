@@ -3,3 +3,4 @@ minishell
 vgcore*
 .nfs*
 test.c
+*.txt
