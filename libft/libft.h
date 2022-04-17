@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:33:37 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/27 01:41:51 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/17 03:15:08 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,5 @@ void	ft_putnbr_fd(int n, int fd);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_memdel(void **ptr);
 int		get_next_line(int fd, char **line);
-
 
 #endif

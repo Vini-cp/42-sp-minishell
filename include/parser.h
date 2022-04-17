@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 01:01:19 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/03/25 18:11:10 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/17 03:17:43 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #ifndef PARSER_H
 # define PARSER_H
 

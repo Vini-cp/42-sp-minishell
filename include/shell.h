@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/14 22:09:22 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/17 03:17:26 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #ifndef SHELL_H
 # define SHELL_H
 
@@ -92,8 +91,10 @@ void		ft_startenv(t_shell *mshell, char **env);
 t_var		*ft_createvar(char *entry, char **split);
 void		ft_create_args(t_token *token, t_cmd_table **cmd, char **path);
 char		*ft_commandpath(char **paths, char *cmd);
-void		ft_exec_cmd(t_shell *mshell, char **env, int order, t_cmd_table *cmdtable);
-void		ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable, int stdout);
+void		ft_exec_cmd(t_shell *mshell, char **env, int order,
+				t_cmd_table *cmdtable);
+void		ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable,
+				int stdout);
 char		**ft_getenv(t_var *var);
 void		ft_free_env(t_shell *mshell);
 
