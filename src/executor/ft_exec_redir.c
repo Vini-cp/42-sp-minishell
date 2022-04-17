@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_redir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:32:56 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/14 23:30:51 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/17 03:24:38 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@ static int	ft_outredir(char *file_path, int mode)
 {
 	int	fd;
 	int	flag_mode;
-	int flag_permission;
-	
+	int	flag_permission;
+
 	flag_permission = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
 	if (mode == ONE_CHAR)
 		flag_mode = O_TRUNC;
 	else if (mode == TWO_CHARS)
 		flag_mode = O_APPEND;
-
 	if (access(file_path, F_OK) == 0)
 		fd = open(file_path, flag_mode | O_WRONLY | flag_permission);
 	else
@@ -37,7 +36,6 @@ static int	ft_inredirapp(char *stop, int stdout)
 	int		fdout;
 	char	*to_compare;
 	char	*input;
-
 
 	fdout = dup(1);
 	dup2(stdout, 1);
@@ -62,7 +60,7 @@ static int	ft_inredirapp(char *stop, int stdout)
 static int	ft_inredir(char *file_path, int mode, int stdout)
 {
 	int		fd;
-	
+
 	if (mode == ONE_CHAR)
 	{
 		if (access(file_path, F_OK) == 0)
@@ -77,7 +75,7 @@ void	ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable, int stdout)
 {
 	int	fdin;
 	int	fdout;
-	
+
 	if (cmdtable->input_type)
 	{
 		fdin = ft_inredir(cmdtable->input_arg, cmdtable->input_type, stdout);

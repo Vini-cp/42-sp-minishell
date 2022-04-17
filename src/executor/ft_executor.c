@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/14 23:20:18 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/17 03:26:21 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 static void	ft_exec_one_cmd(t_shell *mshell, char **env)
 {
-	t_cmd_table *cmdtable = mshell->cmdtable;
+	t_cmd_table	*cmdtable;
 	int			stdin;
-	int 		stdout;	
-	
+	int			stdout;	
+
+	cmdtable = mshell->cmdtable;
 	if (cmdtable->cmd && !(cmdtable->input_type || cmdtable->output_type))
 		ft_exec_cmd(mshell, env, 1, cmdtable);
 	else
@@ -32,8 +33,8 @@ static void	ft_exec_one_cmd(t_shell *mshell, char **env)
 
 static int	ft_multiaux(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 {
-	int fd[2];
-	int fdaux;
+	int			fd[2];
+	int			fdaux;
 	t_cmd_table	*temp;
 
 	temp = cmdtable;
@@ -50,12 +51,12 @@ static int	ft_multiaux(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 	return (fd[0]);
 }
 
-static void ft_exec_mult_cmd(t_shell *mshell, char **env, t_cmd_table *cmdtable)
+static void	ft_exec_mult_cmd(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 {
-	int fd[2];
-	int	stdin;
-	int stdout;
-	t_cmd_table *temp;
+	int			fd[2];
+	int			stdin;
+	int			stdout;
+	t_cmd_table	*temp;
 
 	temp = cmdtable;
 	pipe(fd);

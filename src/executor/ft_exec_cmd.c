@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:30:15 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/14 23:04:34 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/17 03:23:32 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-static void	ft_execute(char* path, char** args, char** env)
+static void	ft_execute(char *path, char **args, char **env)
 {
-	int pid;
+	int	pid;
 
 	pid = fork();
 	if (pid == 0)
@@ -28,13 +28,16 @@ static void	ft_execute(char* path, char** args, char** env)
 	else if (pid == -1)
 	{
 		perror("fork");
-		return;
+		return ;
 	}
 	else
 		waitpid(pid, NULL, WUNTRACED);
 }
 
-void	ft_exec_cmd(t_shell *mshell, char **env, int order, t_cmd_table *cmdtable)
+void	ft_exec_cmd(t_shell *mshell,
+					char **env,
+					int order,
+					t_cmd_table *cmdtable)
 {
 	if (order == 1)
 		order = 2;
