@@ -6,19 +6,39 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:34:27 by coder             #+#    #+#             */
-/*   Updated: 2022/04/17 03:14:28 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/17 04:02:35 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-static void	initialize_parser_infos(t_parser *parser_infos, char **path)
+static void	initialize_parser_infos(t_parser *parser_infos)
 {
+	// Deveríamos chamar o pathfinder aqui ?
+	// Imaginando que tenha um pipe, pra cada comando chamaríamos o path ??
+	//ft_pathfinder(mshell);
+	//parser_infos.path = mshell->path;
 	parser_infos->first_token = 1;
 	parser_infos->input_redirection = 0;
 	parser_infos->output_redirection = 0;
 	parser_infos->last_token = 0;
-	parser_infos->path = path;
+}
+
+static void	analyze_parser_infos(	t_parser *parser_infos,
+									t_cmd_table **cmd,
+									t_token	*temp_tok,
+									t_shell *mshell)
+{
+	if (parser_infos->first_token)
+		ft_create_args(temp_tok, cmd, mshell->path);
+	parser_infos->iscommand = ft_iscommand(mshell->path, temp_tok->token);
+	parser_infos->iscmdpath = ft_iscmdpath(temp_tok->token);
+	parser_infos->isspecialchar = ft_special_char(temp_tok->token);
+	if (parser_infos->isspecialchar == 0)
+		mshell->no_cmds++;
+	parser_infos->quoted = temp_tok->quoted;
+	if (temp_tok->next == NULL)
+		parser_infos->last_token = 1;
 }
 
 static void	handle_special_char(int s_char,
@@ -97,22 +117,14 @@ void	ft_parser(t_shell *mshell)
 
 	cmd = ft_create_cmd_table();
 	ft_pathfinder(mshell);
-	initialize_parser_infos(&parser_infos, mshell->path);
+	initialize_parser_infos(&parser_infos);
+	parser_infos.path = mshell->path;
 	temp_tok = mshell->firsttoken;
 	mshell->cmdtable = cmd;
 	mshell->no_cmds = 1;
 	while (temp_tok != NULL)
 	{
-		if (parser_infos.first_token)
-			ft_create_args(temp_tok, &cmd, mshell->path);
-		parser_infos.iscommand = ft_iscommand(mshell->path, temp_tok->token);
-		parser_infos.iscmdpath = ft_iscmdpath(temp_tok->token);
-		parser_infos.isspecialchar = ft_special_char(temp_tok->token);
-		if (parser_infos.isspecialchar == 0)
-			mshell->no_cmds++;
-		parser_infos.quoted = temp_tok->quoted;
-		if (temp_tok->next == NULL)
-			parser_infos.last_token = 1;
+		analyze_parser_infos(&parser_infos, &cmd, temp_tok, mshell);
 		analyze_token(temp_tok->token, &cmd, &parser_infos);
 		temp_tok = temp_tok->next;
 	}
