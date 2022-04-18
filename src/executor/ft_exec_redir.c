@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:32:56 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/17 03:24:38 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/18 02:20:33 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable, int stdout)
 		fdout = ft_outredir(cmdtable->output_arg, cmdtable->output_type);
 		dup2(fdout, 1);
 	}
-	ft_exec_cmd(mshell, env, 1, cmdtable);
+	ft_exec_cmd(mshell, env, cmdtable);
 	if (fdout)
 		close(fdout);
 	if (fdin)

@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/17 03:26:21 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/18 02:20:19 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_exec_one_cmd(t_shell *mshell, char **env)
 
 	cmdtable = mshell->cmdtable;
 	if (cmdtable->cmd && !(cmdtable->input_type || cmdtable->output_type))
-		ft_exec_cmd(mshell, env, 1, cmdtable);
+		ft_exec_cmd(mshell, env, cmdtable);
 	else
 	{
 		stdin = dup(0);
@@ -40,7 +40,7 @@ static int	ft_multiaux(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 	temp = cmdtable;
 	pipe(fd);
 	dup2(fd[1], 1);
-	ft_exec_cmd(mshell, env, 1, temp);
+	ft_exec_cmd(mshell, env, temp);
 	close(fd[1]);
 	dup2(fd[0], 0);
 	if (temp->next && temp->next->next)
