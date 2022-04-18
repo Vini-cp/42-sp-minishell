@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_redir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:32:56 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/18 02:20:33 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/18 19:49:26 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,14 @@ static int	ft_outredir(char *file_path, int mode)
 	return (fd);
 }
 
-static int	ft_inredirapp(char *stop, int stdout)
+void	ft_inredirapp(char *stop)
 {
-	int		fd[2];
+	int		fd;
 	int		fdout;
 	char	*to_compare;
 	char	*input;
 
 	fdout = dup(1);
-	dup2(stdout, 1);
-	pipe(fd);
 	to_compare = readline("> ");
 	input = ft_strdup("");
 	while (ft_strcmp(stop, to_compare))
@@ -49,15 +47,15 @@ static int	ft_inredirapp(char *stop, int stdout)
 		to_compare = readline("> ");
 	}
 	free(to_compare);
-	dup2(fd[1], 1);
+	fd = ft_outredir("minitempfile.txt", ONE_CHAR);
+	dup2(fd, 1);
 	printf("%s", input);
-	close(fd[1]);
+	close(fd);
 	dup2(fdout, 1);
 	free(input);
-	return (fd[0]);
 }
 
-static int	ft_inredir(char *file_path, int mode, int stdout)
+static int	ft_inredir(char *file_path, int mode)
 {
 	int		fd;
 
@@ -67,28 +65,35 @@ static int	ft_inredir(char *file_path, int mode, int stdout)
 			fd = open(file_path, O_RDONLY);
 	}
 	else if (mode == TWO_CHARS)
-		fd = ft_inredirapp(file_path, stdout);
+	{
+		ft_inredirapp(file_path);
+		fd = open("minitempfile.txt", O_RDONLY);
+	}
 	return (fd);
 }
 
-void	ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable, int stdout)
+void	ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable, int fd)
 {
 	int	fdin;
 	int	fdout;
 
 	if (cmdtable->input_type)
 	{
-		fdin = ft_inredir(cmdtable->input_arg, cmdtable->input_type, stdout);
+		fdin = ft_inredir(cmdtable->input_arg, cmdtable->input_type);
 		dup2(fdin, 0);
 	}
+	if (fd)
+		dup2(fd, 1);
 	if (cmdtable->output_type)
 	{
 		fdout = ft_outredir(cmdtable->output_arg, cmdtable->output_type);
 		dup2(fdout, 1);
 	}
 	ft_exec_cmd(mshell, env, cmdtable);
-	if (fdout)
-		close(fdout);
-	if (fdin)
+	if (cmdtable->input_type)
 		close(fdin);
+	if (cmdtable->input_type == TWO_CHARS)
+		unlink("minitempfile.txt");
+	if (cmdtable->output_type)
+		close(fdout);
 }
