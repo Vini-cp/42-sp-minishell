@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:34:27 by coder             #+#    #+#             */
-/*   Updated: 2022/04/17 04:02:35 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/19 03:06:12 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 static void	initialize_parser_infos(t_parser *parser_infos)
 {
-	// Deveríamos chamar o pathfinder aqui ?
-	// Imaginando que tenha um pipe, pra cada comando chamaríamos o path ??
-	//ft_pathfinder(mshell);
-	//parser_infos.path = mshell->path;
 	parser_infos->first_token = 1;
 	parser_infos->input_redirection = 0;
 	parser_infos->output_redirection = 0;
@@ -31,7 +27,6 @@ static void	analyze_parser_infos(	t_parser *parser_infos,
 {
 	if (parser_infos->first_token)
 		ft_create_args(temp_tok, cmd, mshell->path);
-	parser_infos->iscommand = ft_iscommand(mshell->path, temp_tok->token);
 	parser_infos->iscmdpath = ft_iscmdpath(temp_tok->token);
 	parser_infos->isspecialchar = ft_special_char(temp_tok->token);
 	if (parser_infos->isspecialchar == 0)
@@ -75,7 +70,10 @@ static void	handle_special_char(int s_char,
 static void	handle_cmd(char *token, t_cmd_table **cmd, t_parser *parser_infos)
 {
 	(*cmd)->cmd = ft_strdup(token);
-	(*cmd)->cmd_path = ft_commandpath(parser_infos->path, token);
+	if (parser_infos->iscmdpath)
+		(*cmd)->cmd_path = ft_strdup(token);
+	else
+		(*cmd)->cmd_path = ft_commandpath(parser_infos->path, token);
 	(*cmd)->args[(*cmd)->no_args] = ft_strdup(token);
 	parser_infos->first_token = 0;
 	(*cmd)->no_args++;
