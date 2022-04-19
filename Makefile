@@ -63,3 +63,6 @@ re	: fclean all
 
 do	: $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LFLAGS)
+
+valgrind:
+	valgrind --leak-check=full --suppressions=src/utils/readline.supp ./minishell ./minishell
