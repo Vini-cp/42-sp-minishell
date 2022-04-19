@@ -8,6 +8,7 @@ CC		:= gcc
 SRC		:=	shell.c \
 			lexer/lexer.c \
 			lexer/token.c \
+			lexer/handlers.c \
 			expander/expander.c \
 			expander/expander_utils.c \
 			expander/trimquotes.c \

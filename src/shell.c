@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/18 19:58:35 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/19 18:50:08 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	main(int argc, char **argv, char **env)
 			ft_expander(mshell);
 			if (mshell->firsttoken)
 			{
-				// ft_printtokens(mshell);
+				ft_printtokens(mshell);
 				ft_parser(mshell);
 				//ft_printtables(mshell);
 				ft_executor(mshell);
