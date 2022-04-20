@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/18 19:50:20 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/20 03:00:00 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_var		*ft_createvar(char *entry, char **split);
 void		ft_create_args(t_token *token, t_cmd_table **cmd, char **path);
 char		*ft_commandpath(char **paths, char *cmd);
 void		ft_exec_cmd(t_shell *mshell, char **env, t_cmd_table *cmdtable);
-void		ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable,
+int			ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable,
 				int fd);
 char		**ft_getenv(t_var *var);
 void		ft_free_env(t_shell *mshell);

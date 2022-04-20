@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/18 19:49:55 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/20 04:41:16 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,16 @@ static void	ft_exec_mult_cmd(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 	int			fd[2];
 	int			stdin;
 	int			stdout;
+	int			redir;
 	t_cmd_table	*temp;
 
 	temp = cmdtable;
 	pipe(fd);
 	stdin = dup(0);
 	stdout = dup(1);
-	ft_redir(mshell, env, temp, fd[1]);
+	redir = ft_redir(mshell, env, temp, fd[1]);
+	if (redir)
+		return ;
 	close(fd[1]);
 	dup2(fd[0], 0);
 	temp = temp->next;
