@@ -33,6 +33,7 @@ SRC		:=	shell.c \
 			utils/ft_iscommand.c \
 			utils/ft_special_char.c \
 			utils/ft_getenv.c \
+			utils/ft_checkerror.c \
 			prep/ft_pathfinder.c \
 			prep/ft_startenv.c \
 			prep/teste.c

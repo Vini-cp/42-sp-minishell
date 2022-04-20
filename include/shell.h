@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/20 03:00:00 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/20 21:35:21 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ void		ft_freevar(t_var *var);
 void		ft_env(char **args, t_shell *mshell);
 void		ft_output_redirection(char *file_path, int mode, char *txt);
 void		ft_here_document(char *input);
+int			ft_inputerror(t_token	*token);
 
 #endif

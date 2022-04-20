@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/20 02:23:28 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/20 21:36:22 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,27 @@ void	ft_getinput(t_shell *mshell)
 	free(prompt);
 }
 
+static void	ft_run(t_shell *mshell)
+{
+		ft_lexer(mshell);
+		ft_expander(mshell);
+		if (mshell->firsttoken)
+		{
+			if (ft_inputerror(mshell->firsttoken))
+				g_exit = 2;
+			else
+			{
+				ft_printtokens(mshell);
+				ft_parser(mshell);
+				//ft_printtables(mshell);
+				ft_executor(mshell);
+				ft_free_cmd_table(mshell);
+			}
+		}
+		ft_freetokens(mshell);
+		free(mshell->input);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_shell	*mshell;
@@ -64,20 +85,7 @@ int	main(int argc, char **argv, char **env)
 	{
 		ft_getinput(mshell);
 		if (mshell->input)
-		{
-			ft_lexer(mshell);
-			ft_expander(mshell);
-			if (mshell->firsttoken)
-			{
-				// ft_printtokens(mshell);
-				ft_parser(mshell);
-				//ft_printtables(mshell);
-				ft_executor(mshell);
-				ft_free_cmd_table(mshell);
-			}
-			ft_freetokens(mshell);
-			free(mshell->input);
-		}
+			ft_run(mshell);
 		else
 			break;
 	}
