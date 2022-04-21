@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_redir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:32:56 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/20 04:41:59 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:50:24 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ static int	ft_inredir(char *file_path, int mode)
 	{
 		if (access(file_path, F_OK) == 0)
 			fd = open(file_path, O_RDONLY);
+		else
+		{
+			printf("%s: No such file or directory\n", file_path);
+			g_exit = 1;
+		}
 	}
 	else if (mode == TWO_CHARS)
 	{
@@ -72,21 +77,13 @@ static int	ft_inredir(char *file_path, int mode)
 	return (fd);
 }
 
-int		ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable, int fd)
+void		ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable, int fd)
 {
 	int	fdin;
 	int	fdout;
 
 	if (cmdtable->input_type)
 	{
-		if (!cmdtable->input_arg)
-		{
-			if (mshell->no_cmds == 1)
-				printf("minishell: syntax error near unexpected token `newline'\n");
-			else
-				printf("minishell: syntax error near unexpected token `|'\n");
-			return (1);
-		}
 		fdin = ft_inredir(cmdtable->input_arg, cmdtable->input_type);
 		dup2(fdin, 0);
 	}
@@ -104,5 +101,4 @@ int		ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable, int fd)
 		unlink("minitempfile.txt");
 	if (cmdtable->output_type)
 		close(fdout);
-	return (0);
 }

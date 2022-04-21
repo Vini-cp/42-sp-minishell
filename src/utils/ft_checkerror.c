@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 20:14:49 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/20 21:40:10 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:31:10 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,40 @@
 
 static int	ft_isredir(char *token)
 {
-	if (!ft_strcmp(token, "|") || !ft_strcmp(token, ">") || !ft_strcmp(token, ">>")
-		|| !ft_strcmp(token, "<") || !ft_strcmp(token, "<<"))
+	if (!ft_strcmp(token, ">>") || !ft_strcmp(token, "<")
+		|| !ft_strcmp(token, "<<"))
+		return (2);
+	else if (!ft_strcmp(token, "|") || !ft_strcmp(token, ">"))
 		return (1);
-	return (0);
+	else
+		return (0);
 }
 
 int	ft_inputerror(t_token	*token)
 {
 	t_token	*temp;
+	char	*error;
 
+	error = strdup("minishell: syntax error near unexpected token ");
 	temp = token;
 	while (temp)
 	{
-		if (temp->quoted == 0 && ft_isredir(temp->token))
+		if (temp->quoted == 0 && ft_isredir(temp->token) > 0)
 		{
 			if (!temp->next)
 			{
-				printf("minishell: syntax error near unexpected token `newline'\n");
-				return (1);
+				printf("%s`newline'\n", error);
+				g_exit = 2;
 			}
-			else
+			else if (ft_isredir(temp->token) > 1 && temp->next->quoted == 0
+				&& !ft_strcmp(temp->next->token, "|"))
 			{
-				if (temp->next->quoted == 0 && ft_isredir(temp->next->token))
-				{
-					printf("minishell: syntax error near unexpected token `%s'\n", temp->next->token);
-					return (1);
-				}
+				printf("%s`%s'\n", error, temp->next->token);
+				g_exit = 2;
 			}
 		}
 		temp = temp->next;
 	}
-	return (0);
+	free(error);
+	return (g_exit);
 }
