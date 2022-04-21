@@ -34,6 +34,8 @@ SRC		:=	shell.c \
 			utils/ft_special_char.c \
 			utils/ft_getenv.c \
 			utils/ft_checkerror.c \
+			utils/ft_free_envvars.c \
+			utils/ft_free_mshell.c \
 			prep/ft_pathfinder.c \
 			prep/ft_startenv.c \
 			prep/teste.c
@@ -67,4 +69,4 @@ do	: $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LFLAGS)
 
 valgrind:
-	valgrind --leak-check=full --suppressions=src/utils/readline.supp ./minishell ./minishell
+	valgrind --leak-check=full --show-leak-kinds=all --suppressions=src/utils/readline.supp ./minishell ./minishell

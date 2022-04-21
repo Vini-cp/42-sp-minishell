@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/20 21:36:22 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/21 04:28:56 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	ft_run(t_shell *mshell)
 				g_exit = 2;
 			else
 			{
-				ft_printtokens(mshell);
+				// ft_printtokens(mshell);
 				ft_parser(mshell);
 				//ft_printtables(mshell);
 				ft_executor(mshell);
@@ -87,7 +87,10 @@ int	main(int argc, char **argv, char **env)
 		if (mshell->input)
 			ft_run(mshell);
 		else
+		{
+			ft_free_mshell(mshell);
 			break;
+		}
 	}
 	return (0);
 }

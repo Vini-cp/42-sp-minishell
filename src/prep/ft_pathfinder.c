@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pathfinder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 18:18:15 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/29 18:23:36 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/21 03:54:38 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	ft_pathfinder(t_shell *mshell)
 		mshell->path[counter] = ft_strjoinfree1(mshell->path[counter], "/");
 		counter++;
 	}
+	mshell->path[counter] = NULL;
 }

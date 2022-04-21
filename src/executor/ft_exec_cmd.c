@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:30:15 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/18 02:19:55 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/21 04:15:34 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_exec_cmd(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 	else if (ft_strcmp(cmdtable->cmd, "env") == 0)
 		ft_env(cmdtable->args, mshell);
 	else if (ft_strcmp(cmdtable->cmd, "exit") == 0)
-		ft_exit(mshell);
+		ft_exit(mshell, env);
 	else
 		ft_execute(cmdtable->cmd_path, cmdtable->args, env);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:47:57 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/25 18:20:27 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/21 03:50:27 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ char	**ft_getenv(t_var *var)
 		}
 		temp = temp->next;
 	}
+	minienv[counter] = NULL;
 	return (minienv);
 }

@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/20 04:41:16 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/21 04:22:35 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,12 @@ static void	ft_exec_mult_cmd(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 
 void	ft_executor(t_shell *mshell)
 {
-	char	**minienv;
+	char	**env;
 
-	minienv = ft_getenv(mshell->firstvar);
+	env = ft_getenv(mshell->firstvar);
 	if (mshell->no_cmds == 1)
-		ft_exec_one_cmd(mshell, minienv);
+		ft_exec_one_cmd(mshell, env);
 	else
-		ft_exec_mult_cmd(mshell, minienv, mshell->cmdtable);
+		ft_exec_mult_cmd(mshell, env, mshell->cmdtable);
+	ft_free_envvars(env);
 }
