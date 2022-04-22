@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:22 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/19 22:56:14 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/22 23:57:38 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ t_token	*ft_handlespecial(t_token *token, t_shell *mshell);
 void	ft_handlequotes(t_shell *mshell);
 t_token	*ft_closetk(t_token *token, t_shell *mshell);
 t_token	*ft_handleredir(t_token *token, t_shell *mshell);
+t_token	*ft_addtk(t_shell *mshell);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 22:36:05 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/19 23:05:03 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/23 00:02:06 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,18 @@ t_token	*ft_handleredir(t_token *token, t_shell *mshell)
 	temp = token;
 	if (mshell->open)
 			temp = ft_closetk(temp, mshell);
+	if (!temp)
+		temp = ft_addtk(mshell);
 	mshell->start = mshell->tkcounter;
 	mshell->tkcounter++;
 	if (mshell->input[mshell->tkcounter]
-		&& mshell->input[mshell->tkcounter] != '|'
+		&& mshell->input[mshell->start] != '|'
 		&& (mshell->input[mshell->start] == mshell->input[mshell->tkcounter]))
 		mshell->tkcounter++;
 	temp = ft_closetk(temp, mshell);
-	if (mshell->input[mshell->tkcounter]
-		&& !mshell->input[mshell->tkcounter + 1]
+	if (!temp && mshell->input[mshell->tkcounter]
 		&& mshell->input[mshell->tkcounter] != ' ')
-	{
-		temp = mshell->firsttoken;
-		while (temp->next)
-			temp = temp->next;
-		temp->next = ft_createtk();
-		temp = temp->next;
-	}
+		temp = ft_addtk(mshell);
 	return (temp);
 }
 

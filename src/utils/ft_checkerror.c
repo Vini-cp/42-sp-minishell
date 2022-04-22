@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 20:14:49 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/21 21:31:10 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/23 00:52:24 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int	ft_inputerror(t_token	*token)
 {
 	t_token	*temp;
 	char	*error;
+	int		ret;
 
+	ret = 0;
 	error = strdup("minishell: syntax error near unexpected token ");
 	temp = token;
 	while (temp)
@@ -35,19 +37,14 @@ int	ft_inputerror(t_token	*token)
 		if (temp->quoted == 0 && ft_isredir(temp->token) > 0)
 		{
 			if (!temp->next)
-			{
-				printf("%s`newline'\n", error);
-				g_exit = 2;
-			}
-			else if (ft_isredir(temp->token) > 1 && temp->next->quoted == 0
-				&& !ft_strcmp(temp->next->token, "|"))
-			{
-				printf("%s`%s'\n", error, temp->next->token);
-				g_exit = 2;
-			}
+				ret = printf("%s`newline'\n", error);
+			else if (ft_isredir(temp->next->token) > 0 && temp->next->quoted == 0)
+				ret = printf("%s`%s'\n", error, temp->next->token);
 		}
+		if (ret)
+			break ;
 		temp = temp->next;
 	}
 	free(error);
-	return (g_exit);
+	return (ret);
 }

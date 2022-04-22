@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:41:04 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/19 22:49:33 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/22 23:56:04 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ t_token	*ft_createtk(void)
 	new->next = NULL;
 	new->quoted = 0;
 	return (new);
+}
+
+t_token	*ft_addtk(t_shell *mshell)
+{
+	t_token	*temp;
+
+	temp = mshell->firsttoken;
+	while (temp->next)
+		temp = temp->next;
+	temp->next = ft_createtk();
+	temp = temp->next;
+	return (temp);
 }
 
 void	ft_freetokens(t_shell *mshell)
@@ -66,6 +78,6 @@ t_token	*ft_closetk(t_token *token, t_shell *mshell)
 	}
 	if (!space && mshell->input[mshell->tkcounter]
 		&& mshell->input[mshell->tkcounter + 1])
-		temp->next = ft_createtk();
+			temp->next = ft_createtk();
 	return (temp->next);
 }

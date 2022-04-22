@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/22 03:28:20 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/23 00:55:18 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,16 @@ static void	ft_run(t_shell *mshell)
 	ft_expander(mshell);
 	if (mshell->firsttoken)
 	{
-		if (ft_inputerror(mshell->firsttoken))
-			g_exit = 2;
-		else
+		if (!ft_inputerror(mshell->firsttoken))
 		{
-			// ft_printtokens(mshell);
+			//ft_printtokens(mshell);
 			ft_parser(mshell);
 			// ft_printtables(mshell);
 			ft_executor(mshell);
 			ft_free_cmd_table(mshell);
 		}
+		else
+			g_exit = 2;
 	}
 	ft_freetokens(mshell);
 	free(mshell->input);
