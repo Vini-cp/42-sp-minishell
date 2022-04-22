@@ -6,19 +6,11 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:34:27 by coder             #+#    #+#             */
-/*   Updated: 2022/04/19 03:06:12 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/22 02:27:53 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
-
-static void	initialize_parser_infos(t_parser *parser_infos)
-{
-	parser_infos->first_token = 1;
-	parser_infos->input_redirection = 0;
-	parser_infos->output_redirection = 0;
-	parser_infos->last_token = 0;
-}
 
 static void	analyze_parser_infos(	t_parser *parser_infos,
 									t_cmd_table **cmd,
@@ -47,7 +39,7 @@ static void	handle_special_char(int s_char,
 		(*cmd)->args[(*cmd)->no_args] = NULL;
 		(*cmd)->next = ft_create_cmd_table();
 		*cmd = (*cmd)->next;
-		initialize_parser_infos(parser_infos);
+		ft_initialize_parser_infos(parser_infos);
 	}
 	else if (s_char == 1 || s_char == 2)
 	{
@@ -115,7 +107,7 @@ void	ft_parser(t_shell *mshell)
 
 	cmd = ft_create_cmd_table();
 	ft_pathfinder(mshell);
-	initialize_parser_infos(&parser_infos);
+	ft_initialize_parser_infos(&parser_infos);
 	parser_infos.path = mshell->path;
 	temp_tok = mshell->firsttoken;
 	mshell->cmdtable = cmd;

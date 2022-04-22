@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/21 04:28:56 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/22 03:17:04 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,23 @@ void	ft_getinput(t_shell *mshell)
 
 static void	ft_run(t_shell *mshell)
 {
-		ft_lexer(mshell);
-		ft_expander(mshell);
-		if (mshell->firsttoken)
+	ft_lexer(mshell);
+	ft_expander(mshell);
+	if (mshell->firsttoken)
+	{
+		if (ft_inputerror(mshell->firsttoken))
+			g_exit = 2;
+		else
 		{
-			if (ft_inputerror(mshell->firsttoken))
-				g_exit = 2;
-			else
-			{
-				// ft_printtokens(mshell);
-				ft_parser(mshell);
-				//ft_printtables(mshell);
-				ft_executor(mshell);
-				ft_free_cmd_table(mshell);
-			}
+			// ft_printtokens(mshell);
+			ft_parser(mshell);
+			ft_printtables(mshell);
+			ft_executor(mshell);
+			ft_free_cmd_table(mshell);
 		}
-		ft_freetokens(mshell);
-		free(mshell->input);
+	}
+	ft_freetokens(mshell);
+	free(mshell->input);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -89,7 +89,7 @@ int	main(int argc, char **argv, char **env)
 		else
 		{
 			ft_free_mshell(mshell);
-			break;
+			break ;
 		}
 	}
 	return (0);

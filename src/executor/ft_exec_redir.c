@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_redir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:32:56 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/21 21:50:24 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/22 02:23:01 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	ft_inredir(char *file_path, int mode)
 	return (fd);
 }
 
-void		ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable, int fd)
+void	ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable, int fd)
 {
 	int	fdin;
 	int	fdout;

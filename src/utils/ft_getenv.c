@@ -6,15 +6,14 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:47:57 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/21 03:50:27 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/22 02:35:56 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-char	**ft_getenv(t_var *var)
+static int	get_number_of_paths(t_var *var)
 {
-	char	**minienv;
 	t_var	*temp;
 	int		counter;
 
@@ -26,9 +25,18 @@ char	**ft_getenv(t_var *var)
 			counter++;
 		temp = temp->next;
 	}
-	minienv = malloc(sizeof(char *) * (counter + 1));
+	return (counter);
+}
+
+static char	**get_env_paths(t_var *var, int no_paths)
+{
+	char	**minienv;
+	int		counter;
+	t_var	*temp;
+
 	counter = 0;
 	temp = var;
+	minienv = malloc(sizeof(char *) * (no_paths + 1));
 	while (temp)
 	{
 		if (ft_strchr(temp->full, '='))
@@ -39,5 +47,15 @@ char	**ft_getenv(t_var *var)
 		temp = temp->next;
 	}
 	minienv[counter] = NULL;
+	return (minienv);
+}
+
+char	**ft_getenv(t_var *var)
+{
+	char	**minienv;
+	int		no_paths;
+
+	no_paths = get_number_of_paths(var);
+	minienv = get_env_paths(var, no_paths);
 	return (minienv);
 }

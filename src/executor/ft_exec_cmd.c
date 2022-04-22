@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:30:15 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/21 21:51:56 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/22 02:42:21 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	ft_execute(char *path, char **args, char **env)
 		write(1, "minishell: ", 11);
 		write(1, args[0], ft_strlen(args[0]));
 		write(1, ": command not found\n", 20);
-		exit(1);
+		return ;
 	}
 	else if (pid == -1)
 	{

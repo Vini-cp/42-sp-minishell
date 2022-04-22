@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 04:17:42 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/21 04:24:03 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/22 02:20:54 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_free_envvars(char **env)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (env[i] != NULL)

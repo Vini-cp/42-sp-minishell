@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   ft_initialize_parser_infos.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 01:01:19 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/22 02:27:14 by vcordeir         ###   ########.fr       */
+/*   Created: 2022/04/22 02:25:44 by vcordeir          #+#    #+#             */
+/*   Updated: 2022/04/22 02:26:21 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#include "../../include/shell.h"
 
-typedef struct s_parser
+void	ft_initialize_parser_infos(t_parser *parser_infos)
 {
-	int		first_token;
-	int		isredirection;
-	int		input_redirection;
-	int		output_redirection;
-	int		iscommand;
-	int		iscmdpath;
-	int		isspecialchar;
-	int		quoted;
-	int		last_token;
-	int		args_length;
-	char	**path;
-}		t_parser;
-
-void	ft_initialize_parser_infos(t_parser *parser_infos);
-
-#endif
+	parser_infos->first_token = 1;
+	parser_infos->input_redirection = 0;
+	parser_infos->output_redirection = 0;
+	parser_infos->last_token = 0;
+}
