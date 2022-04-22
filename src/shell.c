@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/22 03:17:04 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/22 03:28:20 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	ft_run(t_shell *mshell)
 		{
 			// ft_printtokens(mshell);
 			ft_parser(mshell);
-			ft_printtables(mshell);
+			// ft_printtables(mshell);
 			ft_executor(mshell);
 			ft_free_cmd_table(mshell);
 		}
