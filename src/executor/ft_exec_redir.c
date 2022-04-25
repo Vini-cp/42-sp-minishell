@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_redir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:32:56 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/22 02:23:01 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/25 17:46:41 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ void	ft_inredirapp(char *stop)
 	fdout = dup(1);
 	to_compare = readline("> ");
 	input = ft_strdup("");
-	while (ft_strcmp(stop, to_compare))
+	while (to_compare && ft_strcmp(stop, to_compare))
 	{
 		input = ft_strjoinfreeboth(input, to_compare);
 		input = ft_strjoinfree1(input, "\n");
 		to_compare = readline("> ");
 	}
-	free(to_compare);
+	if (to_compare)
+		free(to_compare);
 	fd = ft_outredir("minitempfile.txt", ONE_CHAR);
 	dup2(fd, 1);
 	printf("%s", input);

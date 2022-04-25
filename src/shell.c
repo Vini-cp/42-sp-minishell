@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/23 00:55:18 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/25 19:07:55 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	main(int argc, char **argv, char **env)
 		else
 		{
 			ft_free_mshell(mshell);
+			printf("exit\n");
 			break ;
 		}
 	}

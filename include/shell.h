@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/21 21:52:49 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/25 22:18:22 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void		ft_free_env(t_shell *mshell);
 void		ft_free_envvars(char **env);
 void		ft_free_mshell(t_shell *mshell);
 
-void		ft_pwd(void);
-void		ft_cd(char *new_path);
+void		ft_pwd(char *arg);
+void		ft_cd(t_shell *mshell, char *new_path);
 void		ft_exit(t_shell *mshell, char **env);
 void		ft_echo(char **args);
 void		ft_export(char	**args, t_shell *mshell);
