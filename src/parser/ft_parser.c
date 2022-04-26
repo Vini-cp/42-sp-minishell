@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:34:27 by coder             #+#    #+#             */
-/*   Updated: 2022/04/22 03:26:56 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:54:04 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	handle_cmd(char *token, t_cmd_table **cmd, t_parser *parser_infos)
 	else
 		(*cmd)->cmd_path = ft_commandpath(parser_infos->path, token);
 	if (!(*cmd)->cmd_path)
-		(*cmd)->cmd_path = ft_strdup(token);		
+		(*cmd)->cmd_path = ft_strdup(token);
 	(*cmd)->args[(*cmd)->no_args] = ft_strdup(token);
 	parser_infos->first_token = 0;
 	(*cmd)->no_args++;

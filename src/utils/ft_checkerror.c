@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 20:14:49 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/23 00:52:24 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:51:52 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	ft_inputerror(t_token	*token)
 		{
 			if (!temp->next)
 				ret = printf("%s`newline'\n", error);
-			else if (ft_isredir(temp->next->token) > 0 && temp->next->quoted == 0)
+			else if (ft_isredir(temp->next->token) > 0
+				&& temp->next->quoted == 0)
 				ret = printf("%s`%s'\n", error, temp->next->token);
 		}
 		if (ret)

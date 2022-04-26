@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:30:15 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/26 20:23:45 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:53:05 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	ft_execute(t_shell *mshell, char *path, char **args, char **env)
 	{
 		waitpid(pid, &status, WUNTRACED);
 		if (WIFEXITED(status))
-        	g_exit = WEXITSTATUS(status);
-    }
+			g_exit = WEXITSTATUS(status);
+	}
 }
 
 void	ft_exec_cmd(t_shell *mshell, char **env, t_cmd_table *cmdtable)
