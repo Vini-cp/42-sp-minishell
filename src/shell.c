@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/25 19:07:55 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/26 04:03:21 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_getinput(t_shell *mshell)
 	prompt = ft_strjoinfree2("minishell:", ft_strjoin(cwd, "$ "));
 	signal(SIGINT, ft_reprompt);
 	signal(SIGQUIT, SIG_IGN);
+	g_exit = 130;
 	mshell->input = readline(prompt);
 	if (mshell->input && ft_strlen(mshell->input))
 		add_history(mshell->input);
