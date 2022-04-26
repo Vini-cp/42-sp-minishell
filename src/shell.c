@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 17:20:01 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/26 04:03:21 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/26 04:20:40 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	ft_start(t_shell *mshell, char **env)
 
 void	ft_reprompt(int signum)
 {
+	if (signum == SIGINT)
+		g_exit = 130;
 	(void)signum;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
