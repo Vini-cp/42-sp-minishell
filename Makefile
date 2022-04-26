@@ -70,4 +70,4 @@ do	: $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LFLAGS)
 
 valgrind:
-	valgrind --leak-check=full --show-leak-kinds=all --suppressions=src/utils/readline.supp ./minishell ./minishell
+	valgrind --leak-check=full --suppressions=src/utils/readline.supp ./minishell
