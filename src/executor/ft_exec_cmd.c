@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:30:15 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/26 03:28:16 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:23:45 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-static void	ft_execute(char *path, char **args, char **env)
+static void	ft_execute(t_shell *mshell, char *path, char **args, char **env)
 {
 	int	pid;
+	int	status;
 
 	pid = fork();
 	if (pid == 0)
@@ -23,8 +24,7 @@ static void	ft_execute(char *path, char **args, char **env)
 		write(1, "minishell: ", 11);
 		write(1, args[0], ft_strlen(args[0]));
 		write(1, ": command not found\n", 20);
-		g_exit = 127;
-		exit(1);
+		ft_exit(mshell, env, 127);
 	}
 	else if (pid == -1)
 	{
@@ -32,7 +32,11 @@ static void	ft_execute(char *path, char **args, char **env)
 		return ;
 	}
 	else
-		waitpid(pid, NULL, WUNTRACED);
+	{
+		waitpid(pid, &status, WUNTRACED);
+		if (WIFEXITED(status))
+        	g_exit = WEXITSTATUS(status);
+    }
 }
 
 void	ft_exec_cmd(t_shell *mshell, char **env, t_cmd_table *cmdtable)
@@ -52,7 +56,7 @@ void	ft_exec_cmd(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 	else if (ft_strcmp(cmdtable->cmd, "env") == 0)
 		ft_env(cmdtable->args, mshell);
 	else if (ft_strcmp(cmdtable->cmd, "exit") == 0)
-		ft_exit(mshell, env);
+		ft_exit(mshell, env, 0);
 	else
-		ft_execute(cmdtable->cmd_path, cmdtable->args, env);
+		ft_execute(mshell, cmdtable->cmd_path, cmdtable->args, env);
 }
