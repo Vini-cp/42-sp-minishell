@@ -38,7 +38,7 @@ SRC		:=	shell.c \
 			utils/ft_free_mshell.c \
 			prep/ft_pathfinder.c \
 			prep/ft_startenv.c \
-			prep/teste.c
+			prep/ft_freeptr.c
 
 SRC_FOLDER 	:= src
 OBJ_FOLDER	:= obj
