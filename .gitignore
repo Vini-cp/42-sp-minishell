@@ -4,3 +4,4 @@ vgcore*
 .nfs*
 test.c
 *.txt
+src/utils/readline.supp
