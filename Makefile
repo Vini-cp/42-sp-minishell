@@ -27,7 +27,6 @@ SRC		:=	shell.c \
 			built-in/ft_env.c \
 			built-in/ft_export.c \
 			built-in/ft_unset.c \
-			built-in/ft_here_document.c \
 			utils/ft_commandpath.c \
 			utils/ft_concatenate.c \
 			utils/ft_iscmdpath.c \
@@ -70,4 +69,10 @@ do	: $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LFLAGS)
 
 valgrind:
-	valgrind --leak-check=full --suppressions=src/utils/readline.supp ./minishell
+	valgrind --leak-check=full ./minishell
+
+fullvalgrind:
+	valgrind --leak-check=full --show-leak-kinds=all ./minishell
+
+completevalgrind:
+	valgrind --leak-check=full --show-leak-kinds=all --suppressions=src/utils/readline.supp ./minishell
