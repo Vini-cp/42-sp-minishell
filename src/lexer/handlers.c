@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 22:36:05 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/23 00:02:06 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/29 21:42:21 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_token	*ft_handleredir(t_token *token, t_shell *mshell)
 		mshell->tkcounter++;
 	temp = ft_closetk(temp, mshell);
 	if (!temp && mshell->input[mshell->tkcounter]
-		&& mshell->input[mshell->tkcounter] != ' ')
+		&& !ft_isspace(mshell->input[mshell->tkcounter]))
 		temp = ft_addtk(mshell);
 	return (temp);
 }
@@ -49,7 +49,7 @@ t_token	*ft_handlespecial(t_token *token, t_shell *mshell)
 	t_token	*temp;
 
 	temp = token;
-	if (mshell->input[mshell->tkcounter] == ' ')
+	if (ft_isspace(mshell->input[mshell->tkcounter]))
 	{
 		if (!mshell->open)
 			mshell->tkcounter++;
@@ -66,7 +66,7 @@ void	ft_handlequotes(t_shell *mshell)
 	int		chara;
 
 	chara = mshell->input[mshell->tkcounter];
-	if (!strchr(&mshell->input[mshell->tkcounter + 1], chara))
+	if (!ft_strchr(&mshell->input[mshell->tkcounter + 1], chara))
 		ft_handlenormal(mshell);
 	else
 	{

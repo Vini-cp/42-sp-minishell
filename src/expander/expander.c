@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:33:24 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/25 18:11:57 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/29 16:59:42 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_treatsquote(char *token, int counter, int dquotes)
 {
-	if (!dquotes && strchr(&token[counter + 1], '\''))
+	if (!dquotes && ft_strchr(&token[counter + 1], '\''))
 	{	
 		counter++;
 		while (token[counter] != '\'')

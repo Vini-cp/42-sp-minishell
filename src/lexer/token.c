@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:41:04 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/22 23:56:04 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/29 21:46:31 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_token	*ft_closetk(t_token *token, t_shell *mshell)
 	while (mshell->input[mshell->tkcounter]
 		&& mshell->input[mshell->tkcounter + space])
 	{
-		if (mshell->input[mshell->tkcounter + space] != ' ')
+		if (!ft_isspace(mshell->input[mshell->tkcounter + space]))
 		{
 			space = 0;
 			break ;
