@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:07:40 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/04/27 02:36:43 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/29 21:44:24 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ char		**ft_getenv(t_var *var);
 void		ft_free_env(t_shell *mshell);
 void		ft_free_envvars(char **env);
 void		ft_free_mshell(t_shell *mshell);
+int			ft_isspace(char c);
 
 void		ft_pwd(char *arg);
 void		ft_cd(t_shell *mshell, char *new_path);
