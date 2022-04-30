@@ -2,7 +2,7 @@
 
 NAME	:= libft.a
 CFLAGS	:= -Wall -Wextra -Werror -I./ -c
-CC	:= clang
+CC		:= gcc
 SRCS	:= ft_atoi.c \
 		ft_bzero.c \
 		ft_calloc.c \
@@ -44,7 +44,7 @@ OBJ := $(SRCS:.c=.o)
 all	: $(NAME)
 
 $(NAME)	: $(OBJ)
-	gcc $(CFLAGS) $(SRCS)
+	$(CC) $(CFLAGS) $(SRCS)
 	ar rc $(NAME) $(OBJ)
 
 clean	:
