@@ -6,26 +6,48 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:30:15 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/26 20:53:05 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/30 03:10:06 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
 
-static void	ft_execute(t_shell *mshell, char *path, char **args, char **env)
+void	ft_treatint(int signum)
 {
-	int	pid;
-	int	status;
+	g_exit = 130;
+	(void)signum;
+}
 
-	pid = fork();
-	if (pid == 0)
+static void	ft_treatquit(int signum)
+{
+	g_exit = 131;
+	(void)signum;
+}
+
+static void	(ft_execchild(t_shell *mshell, char *path, char **args, char **env))
+{
+	while (g_exit != 130 && g_exit != 131)
 	{
+		signal(SIGINT, ft_treatint);
+		signal(SIGQUIT, ft_treatquit);
 		execve(path, args, env);
 		write(1, "minishell: ", 11);
 		write(1, args[0], ft_strlen(args[0]));
 		write(1, ": command not found\n", 20);
 		ft_exit(mshell, env, 127);
 	}
+	ft_exit(mshell, env, g_exit);
+}
+
+static void	ft_execute(t_shell *mshell, char *path, char **args, char **env)
+{
+	int	pid;
+	int	status;
+
+	g_exit = 0;
+	pid = fork();
+	if (pid == 0)
+		ft_execchild(mshell, path, args, env);
 	else if (pid == -1)
 	{
 		perror("fork");
@@ -33,8 +55,14 @@ static void	ft_execute(t_shell *mshell, char *path, char **args, char **env)
 	}
 	else
 	{
+		signal(SIGINT, ft_treatint);
+		signal(SIGQUIT, ft_treatquit);
 		waitpid(pid, &status, WUNTRACED);
-		if (WIFEXITED(status))
+		if (g_exit == 131)
+			printf("Quit (core dumped)");
+		if (g_exit == 130 || g_exit == 131)
+			printf("\n");
+		else if (WIFEXITED(status))
 			g_exit = WEXITSTATUS(status);
 	}
 }

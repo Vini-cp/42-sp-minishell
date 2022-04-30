@@ -6,11 +6,13 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 19:32:56 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/25 17:46:41 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/30 00:32:11 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/shell.h"
+
+void	ft_treatint(int signum);
 
 static int	ft_outredir(char *file_path, int mode)
 {
@@ -37,10 +39,11 @@ void	ft_inredirapp(char *stop)
 	char	*to_compare;
 	char	*input;
 
+	signal(SIGINT, ft_treatint);
 	fdout = dup(1);
 	to_compare = readline("> ");
 	input = ft_strdup("");
-	while (to_compare && ft_strcmp(stop, to_compare))
+	while (to_compare && ft_strcmp(stop, to_compare) && g_exit != 130)
 	{
 		input = ft_strjoinfreeboth(input, to_compare);
 		input = ft_strjoinfree1(input, "\n");
@@ -66,6 +69,7 @@ static int	ft_inredir(char *file_path, int mode)
 			fd = open(file_path, O_RDONLY);
 		else
 		{
+			fd = -1;
 			printf("%s: No such file or directory\n", file_path);
 			g_exit = 1;
 		}
@@ -83,22 +87,25 @@ void	ft_redir(t_shell *mshell, char **env, t_cmd_table *cmdtable, int fd)
 	int	fdin;
 	int	fdout;
 
+	g_exit = 0;
 	if (cmdtable->input_type)
 	{
 		fdin = ft_inredir(cmdtable->input_arg, cmdtable->input_type);
-		dup2(fdin, 0);
+		if (fdin >= 0)
+			dup2(fdin, 0);
 	}
-	if (fd)
+	if (fd >= 0)
 		dup2(fd, 1);
 	if (cmdtable->output_type)
 	{
 		fdout = ft_outredir(cmdtable->output_arg, cmdtable->output_type);
 		dup2(fdout, 1);
 	}
-	ft_exec_cmd(mshell, env, cmdtable);
-	if (cmdtable->input_type)
+	if (g_exit == 0)
+		ft_exec_cmd(mshell, env, cmdtable);
+	if (cmdtable->input_type && fdin >= 0)
 		close(fdin);
-	if (cmdtable->input_type == TWO_CHARS)
+	if (cmdtable->input_type == TWO_CHARS && fdin >= 0)
 		unlink("minitempfile.txt");
 	if (cmdtable->output_type)
 		close(fdout);

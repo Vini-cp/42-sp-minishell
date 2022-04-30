@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 21:01:33 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/21 21:51:28 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/29 16:56:09 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_exec_one_cmd(t_shell *mshell, char **env)
 	{
 		stdin = dup(0);
 		stdout = dup(1);
-		ft_redir(mshell, env, cmdtable, 0);
+		ft_redir(mshell, env, cmdtable, -1);
 		dup2(stdin, 0);
 		dup2(stdout, 1);
 	}
@@ -71,7 +71,7 @@ static void	ft_exec_mult_cmd(t_shell *mshell, char **env, t_cmd_table *cmdtable)
 	while (temp->next)
 		temp = temp->next;
 	dup2(stdout, 1);
-	ft_redir(mshell, env, temp, 0);
+	ft_redir(mshell, env, temp, -1);
 	dup2(stdout, 1);
 	dup2(stdin, 0);
 	close(fd[0]);
