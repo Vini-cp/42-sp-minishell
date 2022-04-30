@@ -6,7 +6,7 @@
 /*   By: chideyuk <chideyuk@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 20:40:51 by chideyuk          #+#    #+#             */
-/*   Updated: 2022/03/25 18:14:04 by chideyuk         ###   ########.fr       */
+/*   Updated: 2022/04/29 23:01:44 by chideyuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	ft_exportvar(t_shell *mshell, char *arg)
 		temp = mshell->firstvar;
 		while (temp->next)
 			temp = temp->next;
-		temp2->next = ft_createvar(arg, split);
+		temp->next = ft_createvar(arg, split);
 	}
 }
 
